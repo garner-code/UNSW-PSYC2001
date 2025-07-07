@@ -59,6 +59,7 @@ We are now going to read the dataset that we need for this week into R. The data
 ```{r reading in the dataset for this weeek, error = TRUE}
 
 #Use the read.csv() and here() functions to read in the dataset.
+global_social_media <- read.csv(file=here("Data", #fill this in) ) # an example for previous tutorials
 
 global_social_media <- read.csv(file = here("Data","PSYC2001_global-time-on-social-data.csv")) #your code goes here
 
@@ -76,6 +77,14 @@ This should be pretty easy to do, and makes use of the `filter()` function we us
 global_social_media %>% 
   filter(uni_id == "U49")
 ```
+
+Can you find the other university [add uni code here, from readme]?
+
+```{r}}
+
+
+```
+
 
 Yay ! The output should match the mean of what we calculated last week. But what does this mean ? Why have we bothered to show you this ? 
 
@@ -125,7 +134,7 @@ head(global_social_media$uni_id)
 Great ! So we now know how to pass a vector (column) into the `sample()` function. First lets try extracting a low number of samples, say 20 samples.
 
 ```{r}
-set.seed(1) #ensures we always get the same result from sampling ! 
+set.seed(1) #ensures we always get the same result from sampling ! ## put a link to a webpage about it
 
 mean_sample_20 <- sample(global_social_media$mean_time_on_social, size = 20)
 
@@ -134,13 +143,14 @@ mean_sample_20
 
 This has extracted a sample of 20 means randomly from the `global_social_media` column `mean_time_on_social`. 
 
-Now, what we want to do next is to visualise this data using a histogram. However, there is a problem.  The `sample()` function provides us with a single vector (column) but our plotting function `ggplot()` only likes dataframe. So we first need to convert our `mean_sample_20` vector into a dataframe. 
+Now, what we want to do next is to visualise this data using a histogram. However, there is a problem.  The `sample()` function provides us with a single vector (column) but our plotting function `ggplot()` only likes dataframes. So we first need to convert our `mean_sample_20` vector into a dataframe. 
 
-To do this we use the `data.frame()` function which is used to create dataframe in R. 
+To do this we use the `data.frame()` function which is used to create dataframes in R. 
 
 ```{r converting from a vector to a dataframe}
 mean_sample_20_df <- data.frame(sample_20 = mean_sample_20) #create a dataframe with a column called sample_20 that takes values from our vector
 
+head(mean_sample_20_df)
 ```
 
 Now lets do some data viz ! We can create a histogram using `ggplot()` and the `geom_historgram()` functions from last week.
@@ -184,12 +194,14 @@ mean_sample_500 <- sample(global_social_media$mean_time_on_social, size = 500) #
 
 ```
 
+Back to original plan.
+
 ```{r have a try at converting to dataframes}
 
 #fill in the code below ! 
-mean_sample_100_df <- data.frame(sample_100 = mean_sample_100) #create a dataframe with a column called sample_100 that takes values from our vector
-
-mean_sample_250_df <- data.frame(sample_250 = mean_sample_250) #create a dataframe with a column called sample_250 that takes values from our vector
+mean_sample_100_df <- data.frame(sample_100 = mean_sample_100,
+ sample_250 = mean_sample_250) #create a dataframe with a column called sample_250 that takes values from our vector 
+#etc
 
 mean_sample_350_df <- data.frame(sample_350 = mean_sample_350) #create a dataframe with a column called sample_350 that takes values from our vector
 
