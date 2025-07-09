@@ -7,7 +7,7 @@ output: html_document
 
 <!-- **Please make sure to click KNIT at the top of your screen. This will create a html file which presents a little bit nicer then the file you are seeing here :)** -->
 
-As usual we first always check and load in our required packages. 
+As usual we first always check and load in our required packages.
 
 ```{r checking and loading in packages, message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -20,7 +20,7 @@ library(tidyverse)
 library(ggplot2)
 ```
 
----
+------------------------------------------------------------------------
 
 ### **Developing our hypotheses**
 
@@ -30,48 +30,49 @@ There is some evidence to suggest that passive social media use is associated wi
 
 To address this question, the researchers used the participants metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
 
----
+------------------------------------------------------------------------
 
 ### **Activity 1**
 
 Based on the information above, discuss and formulate hypotheses around the following:
 
-1. Should there be a difference in the number of likes between the mood conditions
-2. What direction do you think this difference could be? Can you formulate an experimental hypothesis each way – i.e. good mood likes > bad mood likes, and vice versa?
-3. What is the null hypothesis?
+1.  Should there be a difference in the number of likes between the mood conditions
+2.  What direction do you think this difference could be? Can you formulate an experimental hypothesis each way – i.e. good mood likes \> bad mood likes, and vice versa?
+3.  What is the null hypothesis?
 
 Discuss this with your neighbour and your tutor. Make sure you have clearly defined your hypotheses before moving forward.
 
----
+------------------------------------------------------------------------
 
 ### **Visualising our data**
 
 First we want to load in the dataset that we need that is the `PSYC2001_social-media-data.csv` dataset. To do this we first load it in using the same`read.csv()` function combined with `here()`.
 
 ```{r reading in tutorial 2 data}
-social_media <- read.csv(file = here("Data","PSYC2001_social-media-data.csv")) #reads in CSV files
+social_media <- read.csv(file = here("data","PSYC2001_social-media-data.csv")) #reads in CSV files
 ```
 
+Before we conduct any kind of statistical test it is a good idea to see how it looks. This will give us an understanding about the underlying data that is driving the results of our statistical test. **Note: It is generally bad practice to go straight from the raw data to the results of a statistical test without first visualising the data.**
 
-Before we conduct any kind of statistical test it is a good idea to see how it looks. This will give us an understanding about the underlying data that is driving the results of our statistical test. Note: It is generally bad practice to go straight from the raw data to the results of a statistical test without first visualising the data. 
-
-
---- 
+------------------------------------------------------------------------
 
 #### Density plot of the distribution
 
 We can look at the distribution of the data using a density plot. A density plot is a smoothed version of a histogram which allows us to understand what the full dsitribution might look like if we had all the data in the world. More information [is here](https://www.data-to-viz.com/graph/density.html) if you are interested !
 
-In order to make this easy to plot we first have to wrangle our data a bit. First we use the `select()` function which allows us to easily choose which columns we do (or don't) want to keep in our dataframe. Second we use the `pivot_longer()` function which allows us to combine different columns together. In the example below we take the columns ending with "likes" and put their values (i.e the number of likes) into the column "likes" and their names (i.e good or bad mood) into the column "mood". 
+Add some info about wideform and longform - e.g. webpage.
+
+In order to make this easy to plot we first have to wrangle our data a bit. First we use the `select()` function which allows us to easily choose which columns we do (or don't) want to keep in our dataframe. Second we use the `pivot_longer()` function which allows us to combine different columns together. In the example below we take the columns ending with "likes" and put their values (i.e the number of likes) into the column "likes" and their names (i.e good or bad mood) into the column "mood".
 
 ```{r Pivoting data}
 social_media_likes <- social_media %>% 
   select("id","good_mood_likes","bad_mood_likes") %>% # choose which columns we want keep in our dataframe
-  pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes")
+  pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes") # add a comment here
 ```
 
-Now, we can get a density plot in R by using the `geom_density` function which inside the `ggplot()`.
+Add a head(dataframe)
 
+Now, we can get a density plot in R by using the `geom_density` function which inside the `ggplot()`.
 
 ```{r creating histograms for all samples, message = FALSE}
 
@@ -85,43 +86,45 @@ ggplot(aes(x = likes, colour = mood)) +
 
 ```
 
-You will notice that we are using a new function `theme_classic()`. This changes some of the aesthetics of the graph automatically so it looks a bit nicer. There are a bunch of other available themes [here](https://ggplot2.tidyverse.org/reference/ggtheme.html). 
+You will notice that we are using a new function `theme_classic()`. This changes some of the aesthetics of the graph automatically so it looks a bit nicer. There are a bunch of other available themes [here](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 You will also notice that we have a new argument inside our `aes()` function called `colour`. This argument tells `ggplot()` to use different line colours depending on the mood of the person at the time (i.e good or bad mood)
 
----
+Activity here where they have to replicate the code but pick a different theme.
+
+------------------------------------------------------------------------
 
 ### Testing hypotheses manually
 
-Now that we have had a look at the structure of our data we have have a go at using a t-test to compare the number of likes in a good and bad mood. We could of course do this manually, by hand (as we have in the tutorials). We have done this below using the first 10 values for good and bad mood likes. 
+Now that we have had a look at the structure of our data we have have a go at using a t-test to compare the number of likes in a good and bad mood. We could of course do this manually, by hand (as we have in the tutorials). We have done this below using the first 10 values for good and bad mood likes.
 
 <br>
 
-Thankfully, we have long since past the stone age so it is no longer necessary to do this by hand. We can get computers to do this for us! 
+Thankfully, we have long since past the stone age so it is no longer necessary to do this by hand. We can get computers to do this for us!
 
----
+------------------------------------------------------------------------
 
 ### Testing hypothesis using a two-sample t-test
 
-We can very easily calculate a t-test in R using the `t.test()` function. Please first have a look at this function using the `?` to understand its arguments. While we usually put a code block here to do this we now recommend from now on instead using the console. 
+We can very easily calculate a t-test in R using the `t.test()` function. Please first have a look at this function using the `?` to understand its arguments. While we usually put a code block here to do this we now recommend from now on instead using the console.
 
 <br>
 
 We can see that `t.test()` takes a number of arguments which are important for the output of the test. What values you provide to these arguments is dependent on what kind of test you want to conduct. The `t.test()` function requires vector inputs (remember this means 'columns' from your dataframe) which we provide as the number of likes for good and bad mood using the original dataframe.
 
-One of the most important arguments to fill in is the `paired` argument. This determines whether you are conducting an independent or paired samples t-test. Here, we have collected the number of likes for the same subject in different moods. This means this data comes from a repeated-measures design, and so a paired t-test is most appropriate. 
+One of the most important arguments to fill in is the `paired` argument. This determines whether you are conducting an independent or paired samples t-test. Here, we have collected the number of likes for the same subject in different moods. This means this data comes from a repeated-measures design, and so a paired t-test is most appropriate.
 
 ```{r conducting our t-test}
 t.test(social_media$good_mood_likes, social_media$bad_mood_likes, paired = TRUE)
 ```
 
-Discuss the output of this paired t-test with your neighbour and tutors. What does it tell us ?  
+Discuss the output of this paired t-test with your neighbour and tutors. What does it tell us ?
 
----
+------------------------------------------------------------------------
 
 ### **Activity 2**
 
-Are you able to conduct a one-sample t-test using R ? Hint: You will need to use the `mutate()` function to create a difference column that can be input into `t.test()` as a one-sample t-test. 
+Are you able to conduct a one-sample t-test using R ? Hint: You will need to use the `mutate()` function to create a difference column that can be input into `t.test()` as a one-sample t-test.
 
 ```{r}
 social_media_diff <- social_media %>% 
@@ -130,7 +133,7 @@ social_media_diff <- social_media %>%
 t.test(social_media_diff$likes_diff) #put this column into the t.test function
 ```
 
----
+------------------------------------------------------------------------
 
 ### **Plotting our results**
 
@@ -144,7 +147,7 @@ social_media_average <- social_media_likes %>%
   summarise(mean_likes = mean(likes)) #calculate the mean number of likes
 ```
 
----
+------------------------------------------------------------------------
 
 ### **Activity 3**
 
@@ -159,4 +162,3 @@ ggplot(aes(y = mean_likes, x = mood, fill = mood)) +
   theme_classic()
 
 ```
-
