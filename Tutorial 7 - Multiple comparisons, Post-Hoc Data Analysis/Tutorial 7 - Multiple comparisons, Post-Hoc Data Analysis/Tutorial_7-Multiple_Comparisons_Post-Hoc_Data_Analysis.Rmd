@@ -1,0 +1,324 @@
+---
+title: "Tutorial 7 - Multiple Comparisons Post-Hoc Data Analysis"
+output: html_document
+---
+
+### **Quick links**
+1. [Statistical Testing of the Many Labs Experiment](#replicate_analysis)
+2. [Multiple comparisons](#multiple_comparisons)
+3. [Post-Hoc Comparisons](#post-hoc)
+
+### **Checking installation and loading packages**
+
+As usual we first always check and load in our required packages.
+
+```{r checking and loading in packages, message = FALSE, warning= FALSE}
+# Check if packages are installed, if not install.
+if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
+if(!require(tidyverse)) install.packages('tidyverse')
+if(!require(ggplot2)) install.packages('ggplot2')
+
+library(here) #loads in the specified package
+library(tidyverse)
+library(ggplot2)
+```
+
+---
+
+### **The currency/money priming experiment**
+
+First what is the experiment that we will be analysing today? 
+
+In this experiments participants were asked to provide their age, gender and ethnicity. While giving this background information the screen was either:
+
+```{r, echo=FALSE,  out.width="50%", fig.align='center', fig.cap="Figure 1: Background screeens"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tutorial%207%20-%20Multiple%20comparisons,%20Post-Hoc%20Data%20Analysis/Figure%201.JPG?raw=true")
+```
+
+
+That is, the money priming conditions and control condition looked like: 
+
+```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Figure 2: Priming conditions"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tutorial%207%20-%20Multiple%20comparisons,%20Post-Hoc%20Data%20Analysis/Figure%202.JPG?raw=true")
+```
+
+
+Participants then answered the following questions:
+
+Please rate the extent to which you agree/disagree with each of the statements below:
+
+1. In general, I find society to be fair.
+
+2. In general, the American political system operates as it should.
+
+3. American society needs to be radically restructured.
+
+4. The United States is the best country in the world to live in.
+
+5. Most policies serve the greater good.
+
+6. Everyone has a fair shot at wealth and happiness.
+
+7. Our society is getting worse every year.
+
+8. Society is set up so that people usually get what they deserve.
+
+The original publication reported that participants would be more likely to endorse/justify the current system if they had been primed with money than if they were not primed.
+
+```{r, echo=FALSE,out.width="50%", fig.align='center', fig.cap="Figure 3: Proposed effects of this study"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tutorial%207%20-%20Multiple%20comparisons,%20Post-Hoc%20Data%20Analysis/Figure%203.jpg?raw=true")
+```
+
+
+The original study used a sample size of 30 participants, with a t(28) = 2.12, p = .043. The effect size in this study was 0.80. The paper in which this study was originally reported also reports five conceptual replications, each using a different priming manipulation and a different dependent variable to measure the “same kind” of effect. The many labs experiment performed 36 direct replications of the first study.
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Consider the size of the priming effect reported in this experiment. Is this effect small, medium, or large, according to Cohen’s conventions? Would you have expected the effect to be small, medium, or large? </div>
+  
+This is a between-subjects design – some people received the money prime, while others received the control prime. For each participant, we can calculate an average degree of agreement with the 8 system justification questions. Then, we can average those scores for the participants in each condition. According to the original study, what should we expect for the average system justification scores in the money compared to the control condition?
+
+---
+
+### **Activity 1 - How well does this replicate in the many labs experiment?** {#replicate_analysis}
+
+Let's determine how of the many lab experiments are able to replicate the findings from the original experiment.
+
+Let's first load in our data and check the quality of our data. This is the `PSYC2001_means-currency.csv` dataset.  Are you able to do this ? 
+
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+  <strong>Info:</strong> All the information about this dataset is available in the ReadMe file ! Please read it if you have not already.</div>
+
+
+```{r Reading in our data}
+means_currency <- read.csv(file = here("Data","PSYC2001_means-currency.csv")) #reads in CSV files
+
+summary(means_currency)
+str(means_currency)
+```
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Have a look at the structure of this data. Do you think we will be able to run a simple `t.test()` on this data ? Please discuss this with your tutor </div>
+  
+### **Activity 2 - Running statistical tests on replicate data**
+
+Now, hopefully you have had some time to critically think about the question above without scrolling down to look at the answer here. But if you haven't... Spoilers!
+
+We will not be able to use our normal `t.test()` function here as we do not have the raw data but rather the summary data. The quickest way to get around this is to compute the results manually using the `mutate()` function. 
+
+**Observed t statistic**
+
+This is because we have all the raw ingredients needed to calculate our observed t-statistic, $t = \frac{M_m - M_c}{s_{M_m - M_c}}$ where where $M_{m}$ and $M_{c}$ refer to the sample means for the money and control conditions, respectively. The $S_{M_{m}-M_{c}}$ value is the pooled standard error term. Please see the following [tutorial]() link if this is unclear.
+
+Now lets take a shot a using the `mutate()` function to do this: 
+
+```{r Calculating our observed t-statistic}
+means_currency_test <- means_currency %>% 
+  mutate(t = diffMean/diffSE)
+
+```
+
+**The decision**
+
+We will reject the null hypothesis if the obtained t is larger (in absolute value) than the critical t statistic. The variable called `tcrit` contains the critical test statistic for each replication. Are you able to help use `mutate()` function to create a variable called `decision` that is labelled `reject` if `t` is greater then `tcrit` and `retain` if it is less ? 
+
+```{r Creating our decision variable}
+means_currency_test <- means_currency_test %>% 
+  mutate(decision = case_when(abs(t) > tcrit ~ "reject", abs(t) < tcrit ~ "retain")) #case_when makes the value "reject" if in that row 't' > tcrit and vice versa.
+```
+
+Can you figure out how to `count()` the number of rejected null hypotheses here ? 
+
+```{r}
+means_currency_test %>% 
+  count(decision)
+```
+
+**Confidence intervals**
+
+Thankfully, making confidence intervals is now pretty easy because we already have the key ingredients. Recall that the confidence interval is constructed according to the rule: $$(M_{m} - M_{c})\,\pm\, S_{M_{m}-M_{c}}\, \times \, t_{c}$$
+
+We have all those things, so you should now be able to use the `mutate()` function to calculate two new variables: the lower and upper bound of the 95% confidence interval. Try and make the confidence interval yourself.
+
+```{r}
+means_currency_test <- means_currency_test %>% 
+  mutate(upper_ci = diffMean + diffSE * tcrit,
+         lower_ci = diffMean - diffSE * tcrit)
+```
+
+For all of the labs except 13, the confidence interval contains 0. We knew that this was going to happen, because we had failed to reject the null hypothesis in the t test. In the case of lab 13, by contrast, the confidence interval does not include 0. 
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Why is it that that the decision outcome of our t-test and confidence intervals are always consistent ? Discuss with your tutor and classmates. </div>
+  
+  
+### **Multiple Comparisons** {#multiple_comparisons}
+
+Take a look at the outcomes of the experiments. Do you think there is likely an effect of currency/money priming on system justification? Why?
+
+**Decision-wise error rate**
+
+Each experiment had a 5% significance level, and so the probability of rejecting a true H0 was 0.05 for each individual experiment.
+
+Assuming that H0 is true in this case, does it look like any lab made this error?
+We call the probability of making a type I error the decision-wise error rate, because it is probability of making an incorrect decision to reject H0 for each particular decision.
+
+Now, since each lab had a 5% chance of incorrectly rejecting H0, do you think that the overall chance that at least one of those labs would have rejected H0 is also 5%?
+
+**Collective error rate**
+
+By doing 36 hypothesis tests, the chance of rejecting one of those H0 was inflated. In fact, the probability of rejecting at least one H0, assuming H0 is true, in 36 experiments is: $$ 1 - (1-0.05)^{36} = 0.84 $$
+This means there is an 85% chance that at least one of the 36 experiments would reject H0, even if H0 was true ! 
+
+We can show this using the current replicates. First lets calculate a p value for these tests (do not worry about the exact formula used here!)
+
+**Implications for a single study**
+
+Imagine if you were Lab 13 – the only lab to reject H0 and find the effect that was expected before the data were collected. When they observed this result, Lab 13 did not know about the results of the other 35 experiments. Imagine if this were your Honours project, or any other single study, and there weren’t 35 other studies to which you could compare your results. How could you know that the effect wasn’t real?
+
+The biggest implication of this result is to remember that the outcome of a single experiment is unlikely to be conclusive.
+
+We can see this by plotting the **p-values** of the t-values we calculated for each lab. First we need to calculate the p-values using `mutate()`. Note do not worry about the code 
+
+
+```{r Calculating p values}
+means_currency_p <- means_currency_test %>% 
+  mutate(p_value = 2*pt(q = abs(t), df = dfperlab, lower.tail = FALSE)) #pt calculates the probability of a specified t-value lying on a t-distribution with a specified degrees of freedom.
+```
+
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+  <strong>Info:</strong> Do not worry about the code here!</div>
+
+### **Activity 3 - Plotting p-values of a distribution**
+
+Now we can plot these p-values using ggplot2 - are you able to help with this ? 
+
+```{r}
+means_currency_p %>% 
+  ggplot(aes(x = lab, y = p_value)) + 
+  geom_point(size = 3) +
+  theme_classic()
+```
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Would you have expected the p-values to vary this much? </div>
+  
+Interestingly, if H0 is true, then all possible values of p are equally likely. We can see this in the data – the p-values we observe look randomly distributed from 0 to 1. You should always keep in mind that the p-value in your study, even if it sits below the significance level of 5%, may have been a chance outcome – a result of sampling variability.
+  
+Indeed, that’s what happened to Lab 13. In this case, Lab 13 were just lucky to find out that their significant result was due to sampling variability (i.e., that H0 is likely true, despite their version of the experiment having rejected H0). So, how do you find out whether a particular significant result is likely due to chance? The answer is replication.
+
+### **Direct Replication**
+
+The many-lab researchers did 36 direct replications of the original study. They copied the methods and analysis of the original study as much as was possible. For example, the study was done in different countries, and so the details were adapted.
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Do you think a true, direct replication of a study is ever possible ? </div>
+  
+The direct replications did have one difference from the original study; they used different sample sizes. 
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Were the sample sizes larger or smaller in the replication than in the original study? Why do you think it was set up that way? </div>
+
+
+  
+### **Conceptual Replication**
+
+Recall that the original study had five conceptual replications of the same basic effect of priming the concept of money on system justification. Each of these studies contained a new priming manipulation, a new measure of system justification and thus a new dependent variable to measure. The motivation for performing conceptual replications is that you can show that an effect generalises to a wide range of scenarios and circumstances. Being able to generalise is important because we would not be very interested in the effect of currency priming if it were only reliably observed in the circumstances of this exact experiment.
+
+However, conceptual replications are subject to issues with multiple comparisons that we’ll now discuss.
+
+### **Post-Hoc Comparisons** {#post-hoc}
+
+So what is the issue with conceptual replications? The issue, as will be discussed in more detail in a future lecture, is that of ‘hidden’ multiple comparisons. The unique feature of a direct replication is that it is confirmatory, in the sense that all of the decisions about how the data are to be analysed are made before any data are collected. When decisions about data analysis are not made in advance of data collection, then the study is exploratory, and this requires some care when it comes to how the results of statistical tests are interpreted.
+
+Why is the distinction between confirmatory and exploratory data analysis important? It comes down to the issue of multiple comparisons. Earlier, we saw that with 36 replications of an experiment, there is an 84% chance that we will get at least one significant result, even when H0 is actually true.
+The number 36 was easy to determine in the case of the many labs experiment, as it was simply the number of experiments run.
+
+**CRITICALLY, In an exploratory data analysis, however, the number of tests a researcher could consider is impossible to know.**
+
+If we have a data set with multiple dependent variables and multiple independent variables, then it is unclear how many different tests can be carried out in order to test a hypothesis. As we shall now see, there are lots of ways we can test whether money priming affects system justification.
+
+### **Activity 4 - Post-Hoc Comparisons**
+
+```{r, echo=FALSE,out.width="50%", fig.align='center', fig.cap="Figure 4: Learning multiple comparisons"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tutorial%207%20-%20Multiple%20comparisons,%20Post-Hoc%20Data%20Analysis/Figure%204.gif?raw=true")
+```
+
+
+We will now be using a new datfile called 'dat6.csv' that contains the raw data from the money priming study from from one of the labs involved in the many-labs project: Lab 6 (HELP Univeristy, Malaysia).
+
+Lets read in our data and check the quality of our data
+
+```{r}
+malaya_currency <- read.csv(file = here("Data","PSYC2001_Currency.csv")) #reads in CSV files
+```
+
+
+We can see the variables that we have focused on thus far – the average system justification score (the variable called Sysjust), and the condition to which each individual was assigned (MoneyGroup). Because each study was a direct replication of the original study, the primary analysis was confirmatory and so was restricted to looking at these two variables alone.
+
+Lets first carry out a basic analsyis, comparing the average ssystem justification socre between the two money priming conditions. Can you figure out how to do this? 
+
+```{r}
+t.test(formula = Sysjust~MoneyGroup, data = malaya_currency, var.equal = TRUE, paired = FALSE)
+```
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Is the result significant? </div>
+  
+
+```{r}
+str(malaya_currency)
+```
+
+Notice that the data set contains a lot of other variables. Contained within the data set is information about the participants’ gender, age, and native language. Information about the experimental conditions are also included, such as the gender and race of the experimenter, and whether the participant was tested alone or in a group. You’ll also notice that the response from each participant for each of the 8 system justification questions is also provided.
+
+Perhaps some of these factors affect the size of the primacy effect. For example, maybe one of the system justification questions wasn’t very good. Looking back at the questions, maybe the one about the US being the best country in the world wasn’t really about justifying a system of government, and so we should try the analysis again but excluding that question. Sounds reasonable. Maybe money priming only has an effect in the US, or for US citizens? Maybe the money priming only works with females or males, or older participants, since they may have more money? All of these are post-hoc questions that one could ask of this data set.
+
+Let's repeat the analysis on only native English speakers. To do this we will need to use the `filter()` function to keep only naitve english speakers and then repeat our analysis using `t.test()`
+
+```{r}
+malaya_currency_english <- malaya_currency %>% 
+  filter(nativelang == "english")
+
+t.test(formula = Sysjust~MoneyGroup, data = malaya_currency_english, var.equal = TRUE, paired = FALSE)
+
+```
+
+Looks promising – though we don’t quite have a significant result, the p-value is close to 0.05. Perhaps the problem is the questions used? What if the problem is that the real dependent variable should be about fairness. Questions 1 and 6 seems to be related to fairness, and so let’s create a new variable that is only about fairness.
+
+Let’s call this new variable fairJust, and make it the average of system justification questions 1 and 6. To do this we can use the `mutate()` function. Are you able to do this ? 
+
+```{r}
+malaya_currency <- malaya_currency %>% 
+  mutate(fairJust = (sysjust1 + sysjust6)/2)
+```
+
+
+Now the two groups can be compared on this new dependent variable, fairJust, seeing whether that variable is different between the two moneyGroup conditions using an independent groups t test as before.
+
+```{r}
+t.test(formula = fairJust~MoneyGroup, data = malaya_currency, var.equal = TRUE, paired = FALSE)
+
+```
+
+
+Try this for yourself. Look at the data set, and come up with an interesting question to ask of this data. Do a hypothesis test that addresses this question. Try this with a least two different hypotheses.
+
+```{r Hypothesis 1 data manipulation and statistical test}
+
+```
+
+```{r Hypothesis 2 data manipulation and statistical test}
+
+```
+
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+  <strong>Question:</strong> Now, think about the issues with interpreting the rejection of H0 using a significance level of 5% for this kind of exploratory data analysis. </div>
+
+As a clue, think about the first part of the lab. In that case, we knew that we were doing 36 hypothesis tests, and so we knew that the overall probability of rejecting a true H0 had increased. What has that got to do with these exploratory data analyses? How many tests did you do? How many tests could you have done? Do you think the overall probability of rejecting a true H0 has gone up? If you do find a significant effect in one of these analyses, could it be a Type I error? What’s the probability that it is a Type I error? Is it 5%, as would be implied by the significance level of 0.05%?
+
+That's it. Its finally over. Best of luck in the exam and beyond ! If you have any questions at all make sure to ask your computing tutors now (before they are gone forever !)
+
+```{r, echo=FALSE,out.width="50%", fig.align='center', fig.cap="Figure 5: This is just the beginning (but celebrate!)"}
+knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tutorial%207%20-%20Multiple%20comparisons,%20Post-Hoc%20Data%20Analysis/Figure%205.jpg?raw=true")
+```
+
