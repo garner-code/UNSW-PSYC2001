@@ -15,10 +15,11 @@ output: html_document
 
 For this course, you need two different bits of software, [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download). R is a programming language that you will write code in aCnd R Studio is an Integrated Development Environment (IDE) which makes working with R easier. Think of it as knowing English and using a plain text editor like NotePad to write a book versus using a word processor like Microsoft Word. You could do it, but it wouldn't look as good and it would be much harder without things like spell-checking and formatting. In a similar way, you can use R without R Studio but we wouldn't recommend it. The key thing to remember is that although you will do all of your work using R Studio for this course, you are actually using two pieces of software which means that from time-to-time, both of them may have separate updates.
 
-All of the School of Psychology computers have R and R Studio installed, however, we can only guarantee that the computers in the Level 2 psychology labs have the right set-up. Additionally, both are freely available so you may wish to install them on your own machine. There is a useful [guide to installing them both here](https://psyteachr.github.io/hack-your-data/r_instructions.html) that you can use.
+R is a free and open-source programming language that is widely used for statistical computing and data analysis. R Studio is a user-friendly interface that makes it easier to write and run R code, manage files, and visualize data.
 
-Most computers will install R without any problems, however, if your computer cannot run it (for example, if you have a notebook lapatop), there is a browser version of R and you can find instructions [here]()
-#how do we want to do this ? Using rstudio cloud? Can add into a link here
+All of the School of Psychology computers have R and R Studio installed, however, we can only guarantee that the computers in the Level 2 psychology labs have the right set-up. 
+
+Both R and RStudio are freely available so you may wish to install them on your own machine. There is a useful [guide to installing them both here](https://psyteachr.github.io/hack-your-data/r_instructions.html) that you can use. Note that the PSYC2001 staff are unable to help you if you have specific technical issues setting up R and RStudio on your own machine. But the tutors can support you using R and RStudio on the School of Psychology computers in the computer labs. If you are having specific technical issues setting this up on your own machine, then you should submit an issue to UNSW IT Services.
 
 ---
 
@@ -36,7 +37,7 @@ knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tuto
 
 ### **Functions and arguments**
 
-**Functions** in R execute specific tasks and normally take a number of **arguments** (you might want to think as these as verbs that require a subject and an object). You can look up all the arguments that a function takes by using the help documentation by using the format `?function`. Some arguments are required, and some are optional. Optional arguments will often use a default (normally specified in the help documentation) if you do not enter any value.
+**Functions** in R allow you to perform tasks that would take a long time to write out by hand, by only using one term! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of **arguments** (you might want to think as these as verbs that require a subject and an object). You can look up all the arguments that a function takes by using the help documentation by using the format `?function`. Some arguments are required, and some are optional. Optional arguments will often use a default (normally specified in the help documentation) if you do not enter any value.
 
 As an example, let’s look at the help documentation for the function `rnorm()` which randomly generates a set of numbers with a normal distribution. 
 
@@ -194,11 +195,12 @@ dplyr::select()
 MASS::select()
 ```
 
+Note that this is for your own information, so that you aren't alarmed when you see such messages in your great future of data analysis. You won't have to worry about package conflicts during this course.
 ---
 
 ### **Objects**
 
-A large part of your coding will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using `<-`.
+A large part of your coding for data analysis will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using `<-`.
 
 ### **Activity 5: Create some objects**
 
