@@ -3,6 +3,9 @@
 title: "Tutorial 1 - Introduction to R"
 output: html_document
 ---
+
+To perform data analysis in Psychology, one needs some powerful software to help you get data into shape, and to apply all the fancy statistical tests that you will learn about in this course. In this course, we will be using the programming language R and the software R Studio to do this.
+
 ### **Quick Links** 
 
 1. [Packages](#packages)
