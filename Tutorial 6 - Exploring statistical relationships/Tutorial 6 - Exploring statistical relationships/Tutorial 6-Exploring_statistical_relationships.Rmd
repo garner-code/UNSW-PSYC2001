@@ -201,7 +201,7 @@ social_media_attitutde_NA %>%
   
 ### **Conducting correlations**
 
-Let’s find out if there is a correlation between ‘time_on_social’ and ‘attitude’. To do this we can use the `cor.test()` function. This function takes in two arguments, one for each variable (column). 
+Let’s find out if there is a statistically significant correlation between ‘time_on_social’ and ‘attitude’. To do this we can use the `cor.test()` function. This function takes in two arguments, one for each variable (column). 
 
 ```{r Correlations between time_on_social and attitude}
 cor.test(x = social_media_attitutde_NA$time_on_social, y = social_media_attitutde_NA$attitude, use = "complete.obs") #use = "complete.obs" removes all NA values from the correlation. 
