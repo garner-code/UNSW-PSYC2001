@@ -3,6 +3,8 @@ title: "Tutorial 2 - Data Wrangling and Visualization"
 output: html_document
 ---
 
+The process of data analysis is 90% data wrangling and 10% data analysis. This means that the majority of your time will be spent preparing your data for analysis. In this tutorial we will learn how to import, clean and visualise our data using RStudio.
+
 ### **Quick links**
 
 1. [Importing Data](#importing)
@@ -12,6 +14,8 @@ output: html_document
 ### **Checking installation and loading packages**
 
 Before we can **begin** any script we first need to make sure that the **required packages are installed** in our version of RStudio. Next, we can **load the required packages** to be used in the script. The code block below will do this for you.
+
+Note that in the code below, we've added a fancy `if` statement to check if the packages are installed. If they are not installed, it will install them for you. This is a good practice to ensure that your code runs smoothly on any computer without needing to manually install packages. Particularly if you are using the University's computers, where we have already installed the packages you need (and we ask you not to install any more!).
 
 ```{r checking and loading in packages, message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -81,22 +85,28 @@ knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tuto
 ```
 
 
-You will notice that the data for today, called `PSYC2001_social-media-data.csv`, is a **csv file** (short for a *Comma Separated Value* file). This means that we will need to **import the dataset** using a function capable of importing csv files. 
+You will notice that the data for today, called `PSYC2001_social-media-data.csv`, is a **csv file** (short for a *Comma Separated Value* file). 
 
-We will be using **two different functions** to achieve this. The `read.csv()` function is used to import our csv dataset and it comes from the `utils` package which is part of `base R`. But the `read.csv()` function needs to know where the file is coming from. To do this, we use the `here()` function from the `here` package. This function tells R the **location of the project** we are working from, to make locating the data easier.
+CSV files are a common and handy way to store data, because they can be read by heaps of different programs, like Excel, Google Sheets, and R. They are simple text files where each line represents a row of data, and the values in each row are separated by commas. Try double clicking on the csv file now to see what happens. You'll see that Excel offers to open it for you. Click ok to open the file in Excel and take a look at how the data looks. Then say 'that's very kind of you Excel, but we are more powerful than you. We R.'
 
-Let's first confirm that `here()` knows our current location on this pc (called the **'Working Directory'**)
+First, we need to load the data into R. This means that we will need to **import the dataset** using a function capable of importing csv files. 
+
+We will be using **two different functions** to achieve this. The `read.csv()` function is used to import our csv dataset and it comes from the `utils` package which is part of `base R`. But the `read.csv()` function needs to know where the file lives on the computer. To do this, we use the `here()` function from the `here` package. This function tells R the **location of the project** we are working from, to make locating the data easier.
+
+Let's first confirm that `here()` knows our current location on this PC (called the **'Working Directory'**)
 
 ```{r}
 here()
 ```
 
-We can use this to easily find where our file is located and read it.
+We can use this to easily find where our file is located and read it. 
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 social_media <- read.csv(file = here("Data","PSYC2001_social-media-data.csv")) #reads in csv files
 
 ```
+
+Note that this code works because 'Data' is a folder in the same directory as the `.Rproj` file. If the folder Data was somewhere else, then using `here()` would not work. We would need to instead specify the full path to the file. If you are unsure what we mean by 'file path' then please google it, google it now.
 
 <div style="border-left: 4px solid #FF9800; background-color: #FFF3E0; padding: 10px; margin: 10px 0;">
   <strong>Warning:</strong> If you have an error, something has gone wrong—please ask your tutor for help!</div>
@@ -113,7 +123,7 @@ The first thing we should do whenever we import data is to **see how it looks in
     1. Clicking on **Environment** in the top right section of your screen.
     2. Clicking on **social_media**.
     3. You should see a new tab pop up with the data in a **table-like format** (this is called a **dataframe**).
-    4. Make sure that this new tab looks similar to what you are seeing in the opened Excel file.
+    4. Make sure that this new tab looks similar to what you saw when you opened Excel file.
 
 ```{r, echo=FALSE, out.width="200%", fig.align='center', fig.cap="Figure 4: Navigating to dataset"}
 knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/Tutorial%202/Lab%202%20images/Figure%204.gif?raw=true")
@@ -192,12 +202,18 @@ A good question to ask now is - **why are these values in the dataset?**
 
 Sometimes when collecting data, we can’t get a response from every participant. Instead of leaving a blank, researchers will sometimes put in a placeholder value like `-999` to show that the data is missing. These aren't real numbers; they just mean the data wasn’t recorded. But `-999` isn’t the standard way to show missing data in R. R uses `NA` to represent missing values, and that’s important because most R functions know how to handle `NA` properly—but they don’t know to ignore `-999`.
 
-Lets first have a look at how many `-999` values are present in the data. We can do this by using the `filter()` function from the `tidyverse` package which is used to keep (or remove) rows based on certain conditions. We can then use the `count()` function from the `tidyverse` package to sum the number of rows in the dataframe.
+Lets first have a look at how many `-999` values are present in the data. We can do this by using the `filter()` function from the `tidyverse` package which is used to keep (or remove) rows based on certain conditions. 
 
 ```{r filtering values without piping}
 
 social_media_filtered <- filter(social_media, time_on_social == -999) #keep all rows where `time_on_social` is equal to -999
-count(social_media_filtered) #count the total number of rows remaining the dataframe and print it to the console. 
+View(social_mediia_filtered) #view the filtered dataframe
+```
+
+Handily, we can then use the `count()` function from the `tidyverse` package to sum the number of rows in the resulting dataframe.
+
+```{r counting rows}
+count(social_media_filtered) #count the number of rows in the filtered dataframe)
 ```
 
 ### **Introducing Piping**
@@ -212,11 +228,10 @@ social_media %>% #pass the values from social_media to the filter function
 ```
 
 <div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
-  <strong>Info:</strong> Piping is not friends with every functions. Some functions will not accept inputs from pipes (not matter how nice they are !). This will become clearer as we code of this course</div>
+  <strong>Info:</strong> Piping is not friends with every function. Some functions will not accept inputs from pipes (no matter how nice they are !). This will become clearer as we code of this course</div>
 
 
-Now lets use a piping method to clean this data up and remove `-999` and replace them with more R readable `NA` values.  
-We can do this using the `mutate()` and `na_if()` functions from the `tidyverse` package. The `mutate()` function is used to alter columnsin dataframe based on certain conditions and `na_if()` is used to replace given values with `NA` in a dataframe.
+Now lets use a piping method to clean this data up and remove `-999` and replace them with more R readable `NA` values. `NA` stands for 'Not Available' and is the standard way to represent missing data in R. We can do this using the `mutate()` and `na_if()` functions from the `tidyverse` package. The `mutate()` function is used to alter or make new columns in a dataframe based on the conditions we specify and `na_if()` is used to replace given values with `NA` in a dataframe.
 
 ```{r}
 social_media_NA <- social_media %>%
@@ -228,10 +243,11 @@ social_media_NA <- social_media %>%
 
 ### **Data visualization using `ggplot2`** {#visualisation}
 
-Now let's look at some data! We’re going to start by visualising the `time_on_social` variable. Visualising helps us understand more about the distribution of the data, which helps us understand what kinds of analysis we can perform.
+Visualizing data is a crucial step in data analysis. You should never run a statistical analysis without first visualising your data. It helps us understand the distribution of our data, identify patterns, and communicate our findings effectively. It also helps us identify whether the data is suitable for the analysis we want to perform, or whether some weird values remain that could influence the result of our statistical tests, and even worse, our interpretations!
+
+So, let's look at some data! We’re going to start by visualising the `time_on_social` variable.
 
 To do this we will need to use the `ggplot()` function. This is the main function from the `ggplot2` package (**you should know what this is from reading the documentation**). `ggplot()` provides the canvas of the graph you want to make. 
-
 To make the basic canvas `ggplot()` requires two things:
 
 1. The data that you want it to plot.

@@ -3,6 +3,8 @@ title: "Tutorial 4 - Lets test our first hypothesis"
 output: html_document
 ---
 
+Today we are going to ask our first question and seek an answer from the data. We will get the data into shape so that it is in the right format for visualizing and analysing. Then we will run the analysis and learn the answer to our question. Welcome. You are now a psychologist :)
+
 ### **Checking installation and loading packages**
 
 <!-- **Please make sure to click KNIT at the top of your screen. This will create a html file which presents a little bit nicer then the file you are seeing here :)** -->
@@ -28,7 +30,7 @@ Today we are going to address one of the key questions of the study about social
 
 There is some evidence to suggest that passive social media use is associated with lower mood in adolescents, whereas active social media use is related to positive mood [Dienlin & Johannes, 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7366938/). However, a lot of the existing evidence comes from self-report, rather than measuring social media behaviour directly.
 
-To address this question, the researchers used the participants metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
+To address this question, the researchers used the participants' metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
 
 ------------------------------------------------------------------------
 
@@ -96,23 +98,23 @@ Activity here where they have to replicate the code but pick a different theme.
 
 ### Testing hypotheses manually
 
-Now that we have had a look at the structure of our data we have have a go at using a t-test to compare the number of likes in a good and bad mood. We could of course do this manually, by hand (as we have in the tutorials). We have done this below using the first 10 values for good and bad mood likes.
+Now that we have had a look at the structure of our data we have have a go at using a t-test to compare the number of likes in a good and bad mood. We could of course do this manually, by hand (as we have in the tutorials). We have done this below using the first 10 values for good and bad mood likes, to remind you of allll the steps involved.
 
 <br>
 
-Thankfully, we have long since past the stone age so it is no longer necessary to do this by hand. We can get computers to do this for us!
+Thankfully, we have long since past the stone (pen) age so it is no longer necessary to do this by hand. We can get computers to do this for us!
 
 ------------------------------------------------------------------------
 
 ### Testing hypothesis using a two-sample t-test
 
-We can very easily calculate a t-test in R using the `t.test()` function. Please first have a look at this function using the `?` to understand its arguments. While we usually put a code block here to do this we now recommend from now on instead using the console.
+We can very easily calculate a t-test in R using the `t.test()` function. Please first have a look at this function using the `?` to understand its arguments. While we usually put a code block here to show you how to do this, we recommend from now on that you do this yourself instead, using the console. You are ready. Fly my pretty!
 
 <br>
 
 We can see that `t.test()` takes a number of arguments which are important for the output of the test. What values you provide to these arguments is dependent on what kind of test you want to conduct. The `t.test()` function requires vector inputs (remember this means 'columns' from your dataframe) which we provide as the number of likes for good and bad mood using the original dataframe.
 
-One of the most important arguments to fill in is the `paired` argument. This determines whether you are conducting an independent or paired samples t-test. Here, we have collected the number of likes for the same subject in different moods. This means this data comes from a repeated-measures design, and so a paired t-test is most appropriate.
+One of the most important arguments to fill in is the `paired` argument. This determines whether you are conducting an independent or paired samples t-test. Here, we have collected the number of likes for the same subject in different moods. This means this data comes from a repeated-measures design, and so a paired t-test is exactly what you need right now.
 
 ```{r conducting our t-test}
 t.test(social_media$good_mood_likes, social_media$bad_mood_likes, paired = TRUE)
@@ -137,7 +139,7 @@ t.test(social_media_diff$likes_diff) #put this column into the t.test function
 
 ### **Plotting our results**
 
-Now that we have conducted our statistical test we need to present the results in the simplest way possible. One way to do this is by getting the avere number of likes when participants are in a good and bad mood and plotting it using a column graph.
+Now that we have conducted our statistical test we need to present the results in the simplest way possible. Sometimes the best way to plot the data to get the message across is not the same as the one you initially used to visualize and learn about the data. One way to visualize mean differences between conditions is by getting the average number of likes when participants are in a good and bad mood and plotting it using a column graph.
 
 To get the mean number of likes for each mood in a usable form (i.e a dataframe) we can use the `summarise()` function together with the `group_by()` function. The `group_by()` splits the data into different groups and the `summarise()` function calculates a statistic (i.e the mean number of likes)
 
