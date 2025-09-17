@@ -22,3 +22,7 @@ Welcome to the computing tutorials for PSYC2001. This coursebook has been design
 ## Structure of the Coursebook
 
 Each chapter introduces a key concept in statistics. You will often see worked examples with code that runs in R. These examples show you how to apply statistical techniques step by step. Throughout the chapters, you will also find incomplete code blocks. These are practice opportunities for you to fill in the missing parts. Completing these code blocks is important, because your goal at the end of each tutorial is to be able to reproduce the coursebook chapter using the RMarkdown code. More importantly, it will help you move from simply reading code to actively writing and using it. Throughout this course book there will be questions that encourage you to think about about or apply what you've learned in new situation. 
+
+## To-do 
+- Add a bit about coding philosophy and bugs.  
+- add a bit about why.

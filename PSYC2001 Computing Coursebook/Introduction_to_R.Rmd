@@ -1,5 +1,10 @@
 # Introduction to R
 
+::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
+<strong>Credit:</strong> This chapter heavily borrows from the work of Emily Nordmann at the University of Glasgow. Thanks, Emily!
+https://psyteachr.github.io/ads-v3/01-intro.html
+:::
+
 To perform data analysis in Psychology, one needs some powerful software to help you get data into shape, and to apply all the fancy statistical tests that you will learn about in this course. In this course, we will be using the programming language R and the software R Studio to do this.
 
 ## R and R Studio
@@ -8,16 +13,26 @@ For this course, you need two different bits of software, [R](https://www.r-proj
 
 R is a free and open-source programming language that is widely used for statistical computing and data analysis. R Studio is a user-friendly interface that makes it easier to write and run R code, manage files, and visualize data.
 
-All of the School of Psychology computers have R and R Studio installed, however, we can only guarantee that the computers in the Level 2 psychology labs have the right set-up. 
+All of the UNSW School of Psychology computers have R and R Studio installed, however, we can only guarantee that the computers in the Level 2 psychology labs have the right set-up. 
 
 Both R and RStudio are freely available so you may wish to install them on your own machine. There is a useful [guide to installing them both here](https://psyteachr.github.io/hack-your-data/r_instructions.html) that you can use. Note that the PSYC2001 staff are unable to help you if you have specific technical issues setting up R and RStudio on your own machine. But the tutors can support you using R and RStudio on the School of Psychology computers in the computer labs. If you are having specific technical issues setting this up on your own machine, then you should submit an issue to UNSW IT Services.
 
+## Getting started
 
+You should have downloaded the files you need for this week's computing lab tutorial from the course Moodle. Unzip the folder you have downloaded, move the folder somewhere sensible, e.g. from 'Downloads' to 'Documents', and open it up to take a peek at the contents inside. You should see something like the following -
+
+**To-do:  
+- add an image here at the end.**
+
+Each week you will get a folder that looks somewhat like this. Each week, your first job is to download the folder, unzip it and move it to your sensible location, and then double click on the file that ends in '.Rproj'. This will open RStudio.
+
+::: {style="border-left: 4px solid #00bfa5; background-color: #ede0f2; padding: 10px; margin: 10px 0;"}
+<strong>Why should I open RStudio by clicking on the '.Rproj' file?</strong> Indeed, this may seem like a strange request. .Rproj files automatically tells R where your files are located. This is called 'setting the working directory'. What this means is that you won't have to manually tell R where on the computer your needed files live (why will become clearer next week). This also means you get to save a lot of typing in future computing lab tutorials.
+:::
 
 ## Getting to know R Studio
 
-R Studio has a console that you can try out code in (appearing as the bottom left window in **Figure 1**, there is a script editor (top left), a window showing functions and objects you have created in the “Environment” tab (top right window in the figure), and a window that shows plots, files packages, and help documentation (bottom right).
-
+R Studio has a console that you can try out code in (appearing as the bottom left window in Figure \@ref(fig:img-rstudio). If you have opened a script, then there is a script editor (top left, more on scripts shortly below). There is also a window showing functions and objects you have created in the “Environment” tab (top right window in the figure), and a window that shows files, plots, packages, and help documentation (bottom right).
 
 ```{r img-rstudio, echo=FALSE, fig.align='center', fig.cap="RStudio interface"}
 
@@ -25,59 +40,94 @@ knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%
 
 ```
 
+### Activity - using the console
+
+First let's get used to the console where you can try out code. You can think of the console as a very fancy calculator. You can do some impressive calculations, but like a calculator, once you close it down, everything you did is lost.
+
+Click on the console (anywhere), and type the following:
+
+```{r console, eval=FALSE}
+
+2 + 2
+
+```
+
+Then press enter. You should see that R has calculated the answer for you. 
+
+You can try other calculations, for example: 
+
+```{r console2, eval=FALSE}
+
+(5 + 3 + 2) / 3
+
+```
+
+Important! If you are ever unsure about what a piece of code is doing, you should try running it (or bits of it) in the console, to see what answer each piece gives you. This is a great way to learn what code does and to debug your own code when it doesn't work.
+
+## Scripts 
+
+The console is great for trying out code, but it isn't very good for writing code that you want to keep. For this, we use scripts. A script is simply a text file that contains code. You know you have an R script when the filename ends in '.R'. You can write code in a script and then run it in the console. This means that you can save your code and come back to it later. It also means that anyone, anywhere else in the world can reproduce your analysis by running your script. This is a key part of open science and reproducible research.
+
+### Activity - Getting to know scripts
+
+* Open the script `Introduction_to_R.R` in R Studio. You can do this by clicking on the file in the Files tab (bottom right window) or by using File > Open File... from the top menu.
+
+You can see at the top of the script there are some comments. Comments are lines of text that start with a `#` symbol. R ignores these lines when it runs the code, but they are useful for you to write notes to yourself about what the code is doing. You should always include comments in your code to explain what it is doing. This helps you remember what you did when you come back to it later, and it helps others understand your code if you share it with them.
+
+**to-do - (put image of the script here)**
+
+* Try copying and pasting the code `2 + 2` from the console activity above into the script, below the comment that says <span style="color:#228B22"># paste 2 + 2 here</span>. You can do this by highlighting the code in the console, right-clicking and selecting copy, then clicking in the script where you want to paste it, right-clicking and selecting paste.
+
+* Now try running the code in the script. You can do this by highlighting the code you want to run and then clicking the 'Run' button at the top of the script window (see Figure 1: Run button). You should see that the answer appears in the console.
+
+**to-do: insert video**
+
+* Another way to do this is to highlight the code you want to run and then press `Ctrl + Enter` (or `Cmd + Enter` on a Mac). Try this now.
+
+You should see the results in the command window. 
+
+**to-do - put image of the result here**
+
+* Remember to save your script regularly by clicking the save icon (or using `Ctrl + S` or `Cmd + S` on a Mac). Save it, save it now!
 
 ## Functions and arguments
 
 **Functions** in R allow you to perform tasks that would take a long time to write out by hand, by only using one term! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of **arguments** (you might want to think as these as verbs that require a subject and an object). You can look up all the arguments that a function takes by using the help documentation by using the format `?function`. Some arguments are required, and some are optional. Optional arguments will often use a default (normally specified in the help documentation) if you do not enter any value.
 
-As an example, let’s look at the help documentation for the function `rnorm()` which randomly generates a set of numbers with a normal distribution. 
+Before, we calculated (5 + 3 + 2) / 3 in the console. You may have noticed that we add three numbers and then divide by the total number of numbers we added. You may have also noticed that this is the formula for calculating the mean (or average) of a set of numbers.
 
+Often in Psychology, we want to calculate the mean when we have many more than three numbers. This is where functions come in handy. Let's look at the function `mean()`.
 
+### Activity - using a function
 
-## Activity 1
+* Look up the help documentation for `mean()` by typing `r ?mean` in the console. You will see that there is a **Description** of the function, a guide to it's **Usage**, and the **Arguments** you need to make the function work.
 
-Open up R Studio and in the console, type the following code:  
-
-```{r help-doc, eval=FALSE}
-
-?rnorm
-
-```
-
-The help documentation for `rnorm()` should appear in the bottom right help panel. We know that the documentation for rnorm can be a little bit... confusing. To simplify the `rnorm()` function is used to simulate data points from a normal distribution with a given mean and standard deviation. Do not worry about pnorm/dnorm, they can remain as mythical functions in the interest of simplicity.
-
-In the usage section, we see that `rnorm()` takes the following form:
+In the **Usage** section, we see that `mean()` takes the following form:
 
 ```{r arguments, eval = FALSE}
-rnorm(n, mean = 0, sd = 1)
+mean(x, trim = 0, na.rm = FALSE, ...)
 ```
 
-In the arguments section, there are explanations for each of the arguments. `n` is the number of observations we want to create, `mean` is the mean of the data points we will create and `sd` is the standard deviation of the set. In the details section it notes that if no values are entered for `mean` and `sd` it will use a default of 0 and 1 for these values. Because there is no default value for `n` it must be specified otherwise the code won't run.
+In the **Arguments** section, there are explanations for each of the arguments. `x` is the set of numbers that we want to calculate the mean for. Do not worry about `trim` and `na.rm`. For now, they can remain as mythical arguments in the interest of simplicity.
 
-Let's try an example and just change the required argument `n` to ask R to produce 5 random numbers. 
+* Let's use the `mean` function. Highlight the following line of code in your script and run it:
 
+```{r mean_exercise, eval=FALSE}
 
+# run the below line of code to see what answer you get
+mean(x=c(5, 3, 2))
 
-## Activity 2
-
-* Copy and paste the following code into the console.  
-
-```{r rnorm-n}
-set.seed(12042016)
-rnorm(n = 5)
 ```
 
-These numbers have a mean of 0 and an SD of 1. Now we can change the additional arguments to produce a different set of numbers.
+The output in the console should match the answer you got when you calculated (5 + 3 + 2) / 3 by hand. This is but a simple example, but I am sure you can imagine the power of functions when you have many more numbers to work with.
 
-```{r}
-rnorm(n = 5, mean = 10, sd = 2)
-```
+You'll see in the code above that we have put the numbers together in some brackets preceeded by the letter c `c()`. This is another function that combines the numbers into something called a vector. You can think of a vector as a list of items of the same type (e.g., all numbers, or all words). We will learn more about vectors later in this course.
 
-This time R has still produced 5 random numbers, but now this set of numbers has a mean of 10 and an sd of 2 as specified. Always remember to use the help documentation to help you understand what arguments a function requires.
+::: {style="border-left: 4px solid #2196F3; background-color: #323ea8; padding: 10px; margin: 10px 0;"}
+<strong>Getting help on help</strong> It can be difficult to understand help documentation when you are first learning R. Know that you will not be the first. Many cries for help have been posted on stackoverflow.com. You can look there. Also, asking AI like ChatGPT can be useful. For example, you could ask "What does the mean() function in R do?" and it will give you a plain English explanation. However, be careful as AI can sometimes give incorrect information. Always double-check with the official help documentation or other reliable sources. And always always always triple check any code you get AI to help you write.
+:::
 
-
-
-## Argument names
+### Argument names
 
 In the above examples, we have written out the argument names in our code (e.g., `n`, `mean`, `sd`), however, this is not strictly necessary. The following two lines of code would both produce the same result (although each time you run `rnorm()` it will produce a slightly different set of numbers, because it's random, but they would still have the same mean and SD):
 
@@ -102,20 +152,6 @@ When you are first learning R, you may find it useful to write out the argument 
 
 In this course, we will always write out the argument names the first time we use each function, however, in subsequent uses they may be omitted.
 
-
-
-## Tab auto-complete
-
-One very useful feature of R Studio is the tab auto-complete for functions (**see Figure 2: Tab auto-complete**). If you write the name of the function and then press the tab key, R Studio will show you the arguments that function takes along with a brief description. If you press enter on the argument name it will fill in the name for you, just like auto-complete on your phone. This is incredibly useful when you are first learning R and you should remember to use this feature frequently. 
-
-```{r img-autocomplete, echo=FALSE, fig.align='center', fig.cap="Tab auto-complete"}
-
-knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Introduction_to_R/autocomplete.png?raw=true")
-
-```
-
-
-
 ## Base R and packages
 
 When you install R you will have access to a range of functions including options for data wrangling and statistical analysis. The functions that are included in the default installation are typically referred to as **Base R** and there is a useful cheat sheet that shows many Base R functions [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
@@ -132,7 +168,7 @@ However, the power of R is that it is extendable and open source - put simply, i
 
 In order to use a package, you must first install it. The following code installs the package `tidyverse`, a package we will use very frequently in this course.
 
-If you are interested in learning more about tidyverse and how incredibly useful it is in R, please consider reading [R for Data Science](https://r4ds.hadley.nz/)
+If you are interested in learning more about tidyverse and how incredibly useful it is in R, please consider reading [R for Data Science](https://r4ds.hadley.nz/). It's also a great reference whenever you need help using functions from the tidyverse. If you want to learn more coding skills in R, we highly recommend working your way through this book.
 
 * If you are working on your own computer, use the below code to install the tidyverse. **Do not do this if you are working on a University machine**.  
 
@@ -158,7 +194,8 @@ You will get what looks like an error message - it's not. It's just R telling yo
 
 Now that we've loaded the `tidyverse` package we can use any of the functions it contains but remember, you need to run the `library()` function every time you start R.
 
-
+**To-do:  
+- remove package updates and conflicts**
 
 ## Package updates
 
@@ -245,6 +282,9 @@ decade <- age + 10
 
 ```
 
+**To-do:  
+- add an activity where the student creates the object in the script.  
+- also where they make a new object from old objects and add it to the script.**
 
 ::: {style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;"}
 <strong>Tip:</strong> You may find it helpful to read `<-` as `contains`, e.g., `name` contains the text `emily`.
@@ -286,11 +326,16 @@ knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%
 
 ```
 
+**To-do:  
+- Now add an activity where they clear the environment and run the script from start to finish, using the Run button.  
+- then they save the script.**
+
 ## You are Free!
 
 Congratulations you have survived the first tutorial for this course. We look forward to seeing you next week for more coding fun. 
 
-
+**To-do:  
+- check repo for appropriate image or ask Bart**
 
 ```{r  echo=FALSE, fig.align='center', fig.cap="Students reaction to finishing this"}
 

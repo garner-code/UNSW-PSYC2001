@@ -1,10 +1,18 @@
 # Data wrangling and visualisation
 
+**To-do:  
+- add summary of what we'll do this week.  
+- add description of .proj file to click on, and the script to open.  
+- create the script for the week (half started).  
+- amend text below to refer to the code in the script.**
+
 ## Checking installation and loading packages
 
 Before we can **begin** any script we first need to make sure that the **required packages are installed** in our version of RStudio. Next, we can **load the required packages** to be used in the script. The code block below will do this for you.
 
-Note that in the code below, we've added a fancy `if` statement to check if the packages are installed. If they are not installed, it will install them for you. This is a good practice to ensure that your code runs smoothly on any computer without needing to manually install packages. Particularly if you are using the University's computers, where we have already installed the packages you need (and we ask you not to install any more!).
+Note that in the code below, we've added a fancy `if` statement to check if the packages are installed. If they are not installed, it will install them for you. This is a good practice to ensure that your code runs smoothly on any computer without needing to manually install packages. Particularly if you are using the computers in the School of Psychology (UNSW), where we have already installed the packages you need (and we ask you not to install any more!).
+
+In your open script, highlight and run this block of code.
 
 ```{r  message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
@@ -20,6 +28,9 @@ library(ggplot2)
 ## What do packages do?
 
 You should be able to see that we have installed and loaded **3 different packages**. Let's first go over the basics of what a package is. In its simplest terms, a **package is a toolbox** that someone has created for us in R that **makes our life easier**. These packages build on the basic code that comes with the R programming language (what **RStudio** uses to run), called `base R`.
+
+**To-do:  
+- change this image for running the code in the script**
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Opening an R package"}
 knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Data_wrangling_and_visualization/Opening%20an%20R%20package.gif?raw=true")
@@ -38,7 +49,7 @@ knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%
 ?here #? loads the documentation for a specified package.
 ```
 
-## Activity 1 - Using help syntax
+## Activity - Using help syntax
 
 **Fill in the code block below** by putting in the **help syntax** `?` and the name of the package you are interested in. This will get the documentation for the **other packages** we are using. You can do this by substituting in the packages that we are using from above. Have a read of each of these pages and click on any links you find interesting. These are the **main packages** we will be using throughout this course.
 

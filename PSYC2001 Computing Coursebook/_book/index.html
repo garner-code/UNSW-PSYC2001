@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>UNSW PSYC2001 Computing Tutorials</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="UNSW PSYC2001 Computing Tutorials" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UNSW PSYC2001 Computing Tutorials" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  
+
+<meta name="author" content="Bart Cooley, Peter Lovibond, Kelly Garner" />
+
+
+<meta name="date" content="2025-09-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introduction-to-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course Information</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>0.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>0.2</b> Structure of the Coursebook</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.2</b> Getting to know R Studio</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions-and-arguments"><i class="fa fa-check"></i><b>1.3</b> Functions and arguments</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-1"><i class="fa fa-check"></i><b>1.4</b> Activity 1</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-2"><i class="fa fa-check"></i><b>1.5</b> Activity 2</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>1.6</b> Argument names</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#tab-auto-complete"><i class="fa fa-check"></i><b>1.7</b> Tab auto-complete</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.8</b> Base R and packages</a></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.9</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-3-install-the-tidyverse"><i class="fa fa-check"></i><b>1.10</b> Activity 3: Install the tidyverse</a></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-4-load-the-tidyverse"><i class="fa fa-check"></i><b>1.11</b> Activity 4: Load the tidyverse</a></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#package-updates"><i class="fa fa-check"></i><b>1.12</b> Package updates</a></li>
+<li class="chapter" data-level="1.13" data-path="introduction-to-r.html"><a href="introduction-to-r.html#package-conflicts"><i class="fa fa-check"></i><b>1.13</b> Package conflicts</a></li>
+<li class="chapter" data-level="1.14" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>1.14</b> Objects</a></li>
+<li class="chapter" data-level="1.15" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-5-create-some-objects"><i class="fa fa-check"></i><b>1.15</b> Activity 5: Create some objects</a></li>
+<li class="chapter" data-level="1.16" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>1.16</b> Datatypes</a></li>
+<li class="chapter" data-level="1.17" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.17</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.18" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>1.18</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>2.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>2.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>2.3</b> What do these packages do?</a></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-1---using-help-syntax"><i class="fa fa-check"></i><b>2.4</b> Activity 1 - Using help syntax</a></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>2.5</b> Organisation and CSV files</a></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>2.6</b> Importing your Data in R</a></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-imported-data"><i class="fa fa-check"></i><b>2.7</b> Having a look at our imported data</a></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>2.8</b> Checking the quality of our data</a></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>2.9</b> Cleaning the data</a></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>2.10</b> Introducing Piping</a></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>2.11</b> Exporting Data</a></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot2"><i class="fa fa-check"></i><b>2.12</b> Data visualization using <code>ggplot2</code></a></li>
+<li class="chapter" data-level="2.13" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-2---creating-a-histogram-in-ggplot"><i class="fa fa-check"></i><b>2.13</b> Activity 2 - Creating a histogram in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.14" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>2.14</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html"><i class="fa fa-check"></i><b>3</b> What is the sampling distribution of the mean</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#sampling-distribution-of-the-mean"><i class="fa fa-check"></i><b>3.2</b> Sampling distribution of the mean</a></li>
+<li class="chapter" data-level="3.3" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#checking-the-mean-of-time_on_social-from-last-week"><i class="fa fa-check"></i><b>3.3</b> Checking the mean of <code>time_on_social</code> from last week</a></li>
+<li class="chapter" data-level="3.4" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#activity-1---reading-in-data"><i class="fa fa-check"></i><b>3.4</b> Activity 1 - Reading in Data</a></li>
+<li class="chapter" data-level="3.5" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#checking-the-unsw-value-in-this-dataset."><i class="fa fa-check"></i><b>3.5</b> Checking the UNSW value in this dataset.</a></li>
+<li class="chapter" data-level="3.6" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#activity-2---finding-the-university-of-sydney"><i class="fa fa-check"></i><b>3.6</b> Activity 2 - Finding the University of Sydney</a></li>
+<li class="chapter" data-level="3.7" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#vectors-and-the-sample-function"><i class="fa fa-check"></i><b>3.7</b> Vectors and the sample function</a></li>
+<li class="chapter" data-level="3.8" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#what-does-the-sampling-distribution-of-the-mean-look-like-with-only-a-few-samples"><i class="fa fa-check"></i><b>3.8</b> What does the sampling distribution of the mean look like with only a few samples ?</a></li>
+<li class="chapter" data-level="3.9" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#what-does-the-sampling-distribution-of-the-mean-look-like-as-we-add-more-samples"><i class="fa fa-check"></i><b>3.9</b> What does the sampling distribution of the mean look like as we add more samples?</a></li>
+<li class="chapter" data-level="3.10" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#activity-3---increasing-the-sample-size"><i class="fa fa-check"></i><b>3.10</b> Activity 3 - Increasing the sample size</a></li>
+<li class="chapter" data-level="3.11" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#activity-4---visualising-the-sampling-distribution-of-the-mean-with-increasing-samples"><i class="fa fa-check"></i><b>3.11</b> Activity 4 - Visualising the sampling distribution of the mean with increasing samples</a></li>
+<li class="chapter" data-level="3.12" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#extension---what-happens-to-a-the-sampling-distribution-of-the-mean-for-other-population-distributions"><i class="fa fa-check"></i><b>3.12</b> Extension - What happens to a the sampling distribution of the mean for other population distributions ?</a></li>
+<li class="chapter" data-level="3.13" data-path="what-is-the-sampling-distribution-of-the-mean.html"><a href="what-is-the-sampling-distribution-of-the-mean.html#you-are-free-2"><i class="fa fa-check"></i><b>3.13</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html"><i class="fa fa-check"></i><b>4</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>4.2</b> Developing our hypotheses</a></li>
+<li class="chapter" data-level="4.3" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#activity-1---defining-our-hypotheses"><i class="fa fa-check"></i><b>4.3</b> Activity 1 - Defining our hypotheses</a></li>
+<li class="chapter" data-level="4.4" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>4.4</b> Visualising our data</a></li>
+<li class="chapter" data-level="4.5" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#density-plot-of-the-distribution"><i class="fa fa-check"></i><b>4.5</b> Density plot of the distribution</a></li>
+<li class="chapter" data-level="4.6" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#activity-2---choosing-a-new-theme"><i class="fa fa-check"></i><b>4.6</b> Activity 2 - Choosing a new theme</a></li>
+<li class="chapter" data-level="4.7" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>4.7</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="4.8" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#activity-3---calculating-the-median-number-of-likes"><i class="fa fa-check"></i><b>4.8</b> Activity 3 - Calculating the median number of likes</a></li>
+<li class="chapter" data-level="4.9" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>4.9</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="4.10" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#testing-hypothesis-using-a-two-sample-t-test"><i class="fa fa-check"></i><b>4.10</b> Testing hypothesis using a two-sample t-test</a></li>
+<li class="chapter" data-level="4.11" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#activity-4---one-sample-t-tests"><i class="fa fa-check"></i><b>4.11</b> Activity 4 - One-sample t-tests</a></li>
+<li class="chapter" data-level="4.12" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>4.12</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="4.13" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#plotting-our-results"><i class="fa fa-check"></i><b>4.13</b> Plotting our results</a></li>
+<li class="chapter" data-level="4.14" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#activity-5---plotting-the-mean-number-of-likes"><i class="fa fa-check"></i><b>4.14</b> Activity 5 - Plotting the mean number of likes</a></li>
+<li class="chapter" data-level="4.15" data-path="testing-our-first-hypothesis.html"><a href="testing-our-first-hypothesis.html#you-are-free-3"><i class="fa fa-check"></i><b>4.15</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="testing-between-groups.html"><a href="testing-between-groups.html"><i class="fa fa-check"></i><b>5</b> Testing between groups</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="testing-between-groups.html"><a href="testing-between-groups.html#checking-installation-and-loading-packages-3"><i class="fa fa-check"></i><b>5.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="testing-between-groups.html"><a href="testing-between-groups.html#testing-between-groups-1"><i class="fa fa-check"></i><b>5.2</b> Testing between groups</a></li>
+<li class="chapter" data-level="5.3" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-1---formulate-your-research-question"><i class="fa fa-check"></i><b>5.3</b> Activity 1 - Formulate your research question</a></li>
+<li class="chapter" data-level="5.4" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-2---creating-our-likes-variable"><i class="fa fa-check"></i><b>5.4</b> Activity 2 - Creating our likes variable</a></li>
+<li class="chapter" data-level="5.5" data-path="testing-between-groups.html"><a href="testing-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>5.5</b> Wrangling our data</a></li>
+<li class="chapter" data-level="5.6" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-3---visualising-our-data-before-analysis"><i class="fa fa-check"></i><b>5.6</b> Activity 3 - Visualising our data before analysis</a></li>
+<li class="chapter" data-level="5.7" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-4---visualising-group-differences"><i class="fa fa-check"></i><b>5.7</b> Activity 4 - Visualising group differences</a></li>
+<li class="chapter" data-level="5.8" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-5---descriptive-statistics"><i class="fa fa-check"></i><b>5.8</b> Activity 5 - Descriptive statistics</a></li>
+<li class="chapter" data-level="5.9" data-path="testing-between-groups.html"><a href="testing-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>5.9</b> Independent samples t-test</a></li>
+<li class="chapter" data-level="5.10" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-6---undertaking-an-independent-samples-t-test"><i class="fa fa-check"></i><b>5.10</b> Activity 6 - Undertaking an independent samples t-test</a></li>
+<li class="chapter" data-level="5.11" data-path="testing-between-groups.html"><a href="testing-between-groups.html#writing-up-results-and-conclusions-1"><i class="fa fa-check"></i><b>5.11</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="5.12" data-path="testing-between-groups.html"><a href="testing-between-groups.html#you-are-free-4"><i class="fa fa-check"></i><b>5.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="you-got-the-power.html"><a href="you-got-the-power.html"><i class="fa fa-check"></i><b>6</b> You got the power !</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="you-got-the-power.html"><a href="you-got-the-power.html#checking-installation-and-loading-packages-4"><i class="fa fa-check"></i><b>6.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="you-got-the-power.html"><a href="you-got-the-power.html#key-power-facts"><i class="fa fa-check"></i><b>6.2</b> Key power facts:</a></li>
+<li class="chapter" data-level="6.3" data-path="you-got-the-power.html"><a href="you-got-the-power.html#simulating-sample-sizes"><i class="fa fa-check"></i><b>6.3</b> Simulating sample sizes</a></li>
+<li class="chapter" data-level="6.4" data-path="you-got-the-power.html"><a href="you-got-the-power.html#installing-and-loading-new-packages-we-will-be-using-today"><i class="fa fa-check"></i><b>6.4</b> Installing and loading new packages we will be using today</a></li>
+<li class="chapter" data-level="6.5" data-path="you-got-the-power.html"><a href="you-got-the-power.html#activity-1---simulating-data"><i class="fa fa-check"></i><b>6.5</b> Activity 1 - Simulating data</a></li>
+<li class="chapter" data-level="6.6" data-path="you-got-the-power.html"><a href="you-got-the-power.html#activity-2---conducting-t-tests-and-effect-sizes."><i class="fa fa-check"></i><b>6.6</b> Activity 2 - Conducting t tests and effect sizes.</a></li>
+<li class="chapter" data-level="6.7" data-path="you-got-the-power.html"><a href="you-got-the-power.html#activity-3---plotting-our-simulated-data"><i class="fa fa-check"></i><b>6.7</b> Activity 3 - Plotting our simulated data</a></li>
+<li class="chapter" data-level="6.8" data-path="you-got-the-power.html"><a href="you-got-the-power.html#power-analysis-in-r"><i class="fa fa-check"></i><b>6.8</b> Power analysis in R</a></li>
+<li class="chapter" data-level="6.9" data-path="you-got-the-power.html"><a href="you-got-the-power.html#power-analysis-on-correlations"><i class="fa fa-check"></i><b>6.9</b> Power analysis on correlations</a></li>
+<li class="chapter" data-level="6.10" data-path="you-got-the-power.html"><a href="you-got-the-power.html#activity-4---conducting-a-power-analysis-for-a-t-test"><i class="fa fa-check"></i><b>6.10</b> Activity 4 - Conducting a power analysis for a t-test</a></li>
+<li class="chapter" data-level="6.11" data-path="you-got-the-power.html"><a href="you-got-the-power.html#writing-up-a-power-analysis"><i class="fa fa-check"></i><b>6.11</b> Writing up a power analysis</a></li>
+<li class="chapter" data-level="6.12" data-path="you-got-the-power.html"><a href="you-got-the-power.html#you-are-free-5"><i class="fa fa-check"></i><b>6.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="correlation-in-r.html"><a href="correlation-in-r.html"><i class="fa fa-check"></i><b>7</b> Correlation in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="correlation-in-r.html"><a href="correlation-in-r.html#checking-installation-and-loading-packages-5"><i class="fa fa-check"></i><b>7.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="7.2" data-path="correlation-in-r.html"><a href="correlation-in-r.html#investigating-correlational-relationships"><i class="fa fa-check"></i><b>7.2</b> Investigating correlational relationships</a></li>
+<li class="chapter" data-level="7.3" data-path="correlation-in-r.html"><a href="correlation-in-r.html#activity-1---formulate-your-research-question-1"><i class="fa fa-check"></i><b>7.3</b> Activity 1 - Formulate your research question</a></li>
+<li class="chapter" data-level="7.4" data-path="correlation-in-r.html"><a href="correlation-in-r.html#activity-2---how-much-political-attitude"><i class="fa fa-check"></i><b>7.4</b> Activity 2 - How much political attitude?</a></li>
+<li class="chapter" data-level="7.5" data-path="correlation-in-r.html"><a href="correlation-in-r.html#activity-3---looking-for-straight-lines"><i class="fa fa-check"></i><b>7.5</b> Activity 3 - looking for straight lines</a></li>
+<li class="chapter" data-level="7.6" data-path="correlation-in-r.html"><a href="correlation-in-r.html#conducting-correlations"><i class="fa fa-check"></i><b>7.6</b> Conducting correlations</a></li>
+<li class="chapter" data-level="7.7" data-path="correlation-in-r.html"><a href="correlation-in-r.html#writing-up-results-and-conclusions-2"><i class="fa fa-check"></i><b>7.7</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="7.8" data-path="correlation-in-r.html"><a href="correlation-in-r.html#activity-4---exploring-the-data"><i class="fa fa-check"></i><b>7.8</b> Activity 4 - Exploring the data</a></li>
+<li class="chapter" data-level="7.9" data-path="correlation-in-r.html"><a href="correlation-in-r.html#writing-up-results-and-conclusions-3"><i class="fa fa-check"></i><b>7.9</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="7.10" data-path="correlation-in-r.html"><a href="correlation-in-r.html#you-are-free-6"><i class="fa fa-check"></i><b>7.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html"><i class="fa fa-check"></i><b>8</b> Linear regression in R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#checking-installation-and-loading-packages-6"><i class="fa fa-check"></i><b>8.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#investigating-linear-regressions"><i class="fa fa-check"></i><b>8.2</b> Investigating linear regressions</a></li>
+<li class="chapter" data-level="8.3" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#activity-1---formulate-your-research-question-2"><i class="fa fa-check"></i><b>8.3</b> Activity 1 - Formulate your research question</a></li>
+<li class="chapter" data-level="8.4" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#linear-regression-in-r-1"><i class="fa fa-check"></i><b>8.4</b> Linear regression in R</a></li>
+<li class="chapter" data-level="8.5" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#writing-up-results-and-conclusions-4"><i class="fa fa-check"></i><b>8.5</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="8.6" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#plotting-our-results-1"><i class="fa fa-check"></i><b>8.6</b> Plotting our results</a></li>
+<li class="chapter" data-level="8.7" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#activity-2---plotting-straight-lines"><i class="fa fa-check"></i><b>8.7</b> Activity 2 - Plotting straight lines</a></li>
+<li class="chapter" data-level="8.8" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#you-are-free-7"><i class="fa fa-check"></i><b>8.8</b> You are Free!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">UNSW PSYC2001 Computing Tutorials</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">UNSW PSYC2001 Computing Tutorials</h1>
+<p class="author"><em>Bart Cooley, Peter Lovibond, Kelly Garner</em></p>
+<p class="date"><em>2025-09-17</em></p>
+</div>
+<div id="course-information" class="section level1 unnumbered hasAnchor">
+<h1>Course Information<a href="index.html#course-information" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="the-purpose-of-this-coursebook" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> The purpose of this coursebook<a href="index.html#the-purpose-of-this-coursebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Welcome to the computing tutorials for PSYC2001. This coursebook has been designed to support your learning of statistics through hands-on practice with R. It accompanies the RMarkdown tutorial documents available on Moodle and will guide you through the more code-heavy components of the course. The focus is not just on memorising but on learning how to think about data, ask good questions, and use R as a tool to answer them.</p>
+</div>
+<div id="structure-of-the-coursebook" class="section level2 hasAnchor" number="0.2">
+<h2><span class="header-section-number">0.2</span> Structure of the Coursebook<a href="index.html#structure-of-the-coursebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Each chapter introduces a key concept in statistics. You will often see worked examples with code that runs in R. These examples show you how to apply statistical techniques step by step. Throughout the chapters, you will also find incomplete code blocks. These are practice opportunities for you to fill in the missing parts. Completing these code blocks is important, because your goal at the end of each tutorial is to be able to reproduce the coursebook chapter using the RMarkdown code. More importantly, it will help you move from simply reading code to actively writing and using it. Throughout this course book there will be questions that encourage you to think about about or apply what you’ve learned in new situation.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
