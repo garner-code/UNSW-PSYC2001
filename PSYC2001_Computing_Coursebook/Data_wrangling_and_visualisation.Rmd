@@ -81,7 +81,7 @@ knitr::include_graphics("images/Data_wrangling_and_visualisation/Data_in_excel.j
 
 We are now going to load our first dataset into R. To do this we will need to **import the dataset** using a function capable of importing csv files. 
 
-### Activity: Import the data
+### Activity: Import the data {#sec-import-data}
 
 We will be using **two different functions** to achieve this. The `read.csv()` function is used to import our csv dataset and it comes from the `utils` package which is part of `base R`. But the `read.csv()` function needs to know where the file lives on the computer. To do this, we use the `here()` function from the `here` package. This function tells R the **location of the project** we are working from, to make locating the data easier.
 
@@ -133,7 +133,7 @@ The next 3 columns are political attitude subscales:
 
 We should now check that we have **imported into Rstudio matches this description (and what we saw when we opened it in excel)**.  There are a couple of ways to do this.
 
-### Activity: View the data. Always, always, view the data.
+### Activity: View the data. Always, always, view the data. {#sec-data-view}
 
 It is incredibly important to have a look at the data you are analysing. This will quickly tell you if what you are planning to do is sensible, or if things are likely to go horribly wrong. The main thing to remember when running analysis is: **garbage in, garbage out**. If your data is rubbish, your results will be rubbish. So always check your data first.
 

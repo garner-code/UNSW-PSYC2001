@@ -18,11 +18,9 @@ rm(list=ls()) # it is good practice to clear your environment at the start of
 # Check if packages are installed, if not install.
 if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
 if(!require(tidyverse)) install.packages('tidyverse')
-if(!require(ggplot2)) install.packages('ggplot2')
 
 library(here) #loads in the specified package
 library(tidyverse)
-library(ggplot2)
 
 ###############################################################################
 ## Step 2: Find out more about the 'here' package.
@@ -60,6 +58,7 @@ count(social_media_filtered) #count the number of rows in the filtered dataframe
 
 ###############################################################################
 ## Time to replace those -999s with NAs, using mutate() and na_if().
+
 
 
 ## Now run the summary() function again

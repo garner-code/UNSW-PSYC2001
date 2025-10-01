@@ -5,35 +5,36 @@ Today we are going to ask our first question and seek an answer from the data. W
 
 ## Checking installation and loading packages
 
-As usual we first always check and load in our required packages.
+As usual we first always check and load in our required packages. Amend the code in
+your script so that it matches the code below. Then make sure it runs just fine.
 
 ```{r message = FALSE, warning= FALSE}
 # Check if packages are installed, if not install.
 if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
 if(!require(tidyverse)) install.packages('tidyverse')
-if(!require(ggplot2)) install.packages('ggplot2')
 
 library(here) #loads in the specified package
 library(tidyverse)
-library(ggplot2)
 ```
 
 
 ## Developing our hypotheses
 
-Today we are going to address one of the key questions of the study about social media use – how does mood affect active social media use? Active social media use involves interacting with content (i.e. liking posts) rather than just observing posts.
+Today we are going to address one of the key questions of the study about social media use – how does mood influence active social media use? Active social media use involves interacting with content (i.e. liking posts) rather than just observing posts.
 
 There is some evidence to suggest that passive social media use is associated with lower mood in adolescents, whereas active social media use is related to positive mood [Dienlin & Johannes, 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7366938/). However, a lot of the existing evidence comes from self-report, rather than measuring social media behaviour directly.
 
-To address this question, the researchers used the participants metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
+To address this question, the researchers used the participants' metadata to count how frequently they liked posts. By cross-referencing this with the mood diary kept by each participant, they were able to calculate the average number of likes per 10 minutes of use when participants were in a good mood, and when they were in a bad mood.
 
 It should be clear by now that we will be addressing this question using the `good_mood_likes` and `bad_mood_likes` varaibles.  Remember, these variables stand for the following:
 
 -   `good_mood_likes` – average number of likes made over 10 min during a good mood (from platform + diary)
 -   `bad_mood_likes` – as above, but during bad mood
 
+But you should know this, because you read the README.txt file already, right? :)
 
-## Activity 1 - Defining our hypotheses
+
+### Activity - Defining our hypotheses
 
 Based on the information above, discuss and formulate hypotheses around the following:
 
@@ -47,12 +48,26 @@ Based on the information above, discuss and formulate hypotheses around the foll
 
 ## Visualising our data
 
-First we want to load in the dataset `PSYC2001_social-media-data-cleaned.csv` dataset.  To do this we use the same `read.csv()` function combined with `here()`. Do you remember how to do this ? 
+We may have mentioned before that it's incredibly important to visualize your data before running any statistical tests. This is because visualizing your data can help you understand the underlying distribution of the data, identify any potential outliers or anomalies, and ensure that the assumptions of the statistical test you plan to use are met. Remember, it protects against "garbage in, garbage out"!
 
-```{r }
-social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv")) #reads in CSV files
+### Activity - Loading in the data
+
+Last lab we were very smart and saved the cleaned version of the data as a new CSV file. This is what we will be using today. We put it in the Data folder for you already. Use the Files pane to check.
+
+First step! Let's load the dataset `PSYC2001_social-media-data-cleaned.csv`.  To do this we use the same `read.csv()` function combined with `here()`. Do you remember how to do this?
+
+Complete the following line of code in your script. Again, we have been cheeky and have left a little bit out. But you should be able to work it out. You can also refer back to Section \@ref(sec-import-data) if you need to.
+
+```{r, eval=FALSE }
+social_media <- read.csv(file = here(,"PSYC2001_social-media-data-cleaned.csv")) #reads in CSV files
 ```
 
+```{r, message=FALSE, echo=FALSE, results='hide'}
+
+social_media <- read.csv(file = here("Data","PSYC2001_social-media-data-cleaned.csv"))
+```
+
+Now, we did save the data ourselves last week, so we know it is clean. But just to be sure, amend your script so you can get a summary of the data using the `summary()` function. If you don't remember how to do this, then you can check what happened in Section \@ref(sec-data-view).
 
 Before we conduct any kind of statistical test it is a good idea to see how it looks. This will give us an understanding about the underlying data that is driving the results of our statistical test. 
 
@@ -61,33 +76,65 @@ Before we conduct any kind of statistical test it is a good idea to see how it l
 :::
 
 
-
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="Professors reaction when you don't visualise data"}
-knitr::include_graphics("https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Testing_our_first_hypothesis/Statistics%20professors%20reaction.gif?raw=true")
+knitr::include_graphics("images/Testing_our_first_hypothesis/Statistics_professors_reaction.gif")
 ```
 
 
-## Density plot of the distribution
+## Density plots are useful (and pretty)
 
 We can look at the distribution of the data using a density plot. A density plot is a smoothed version of a histogram which allows us to understand what the full distribution might look like if we had all the data in the world. More information on that [is here](https://www.data-to-viz.com/graph/density.html) if you are interested !
 
-In order to make this easy to plot we first have to wrangle our data a bit. What we want to do here is convert our data from a wide-format (which is more digestible for us mere humans) into a long format (which programs like R generally like more!). More on that [here](https://www.statology.org/long-vs-wide-data/).
+In order to make this easy to plot we first have to wrangle our data a bit. Remember, data analysis is 90% wrangling, 10% analysis! What we want to do here is convert our data from a wide-format (which is more digestible for us mere humans) into a long format (which programs like R generally like more!). You can read more on that [here](https://www.statology.org/long-vs-wide-data/), but to make it simple, we just need to get the key variables from our data that currently look like this:
 
-First we use the `select()` function which allows us to easily choose which columns we do (or don't) want to keep in our dataframe. Second we use the `pivot_longer()` function which allows us to combine different columns together. Both of these functions come from the `tidyverse` package. In the code below we take the columns ending with "likes" and put their values (i.e the number of likes) into the column "likes" and their column names names (i.e good or bad mood) into the column "mood". 
+**Wideform data**
+```{r, wide, echo=FALSE}
 
-```{r Pivoting data}
+head(social_media %>% select(id, good_mood_likes, bad_mood_likes))
+
+```
+
+And convert it into a long format that looks like this:
+
+```{r, long, echo=FALSE}
+
+head(social_media %>% select(id, good_mood_likes, bad_mood_likes) %>%
+  pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes"))
+```
+
+As you can see, instead of having each subject's good and bad mood likes in separate columns, we now have a single column for likes and a second column which indicates whether the likes were made in a good or bad mood. So each subject now has two rows in the dataset. This makes it much easier to plot, and to do many other things!
+
+### Activity - Get back on the pipes!
+
+Its time to get back on the pipes!
+The below code gets our data into longform by taking the following steps:  
+
+- First we use the `select()` function to easily choose which columns we do (or don't) want to keep in our dataframe. 
+- Second we use the `pivot_longer()` function which allows us to combine different columns together. Both of these functions come from the `tidyverse` package. 
+- In the code below we take the columns ending with "likes" and put their values (i.e the number of likes) into the column "likes" and their column names names (i.e good or bad mood) into the column "mood". 
+
+Highlight and run this code in your script to get the data into longform.
+
+```{r Pivoting_data}
+
 social_media_likes <- social_media %>% 
   select("id","good_mood_likes","bad_mood_likes") %>% # choose which columns we want keep in our dataframe
   pivot_longer(cols = ends_with("likes"), names_to = "mood", values_to = "likes") #take columns ending with "likes" and move the column names into "mood" and column values into "likes"
 
 ```
 
-Let's make sure that this data still looks okay by using the `head()` function.
+Note that we have saved this changed data as a new object called `social_media_likes`.
 
-```{r View of the data}
+Let's make sure that this data still looks okay by using the `head()` function. Complete the code in your script so that it looks exactly like below
+
+```{r View_of_the_data}
 head(social_media_likes)
 ```
 
+
+Et voila!
+
+### Activity - start plotting
 
 Now, we can get a density plot in R by using the `geom_density` function inside `ggplot()`.
 
@@ -180,7 +227,7 @@ We can see that `t.test()` takes different arguments which are important for the
 
 
 ```{r conducting our t-test}
-t.test(formula = likes ~ mood, data = social_media_likes, paired = TRUE)  #compute a t-test. Likes ~ mood indicates that likes is the numerical variable and mood is a grouping variables. Paired indicates whether to conduct a paired or independent t-test.
+#t.test(formula = likes ~ mood, data = social_media_likes, paired = TRUE)  #compute a t-test. Likes ~ mood indicates that likes is the numerical variable and mood is a grouping variables. Paired indicates whether to conduct a paired or independent t-test.
 ```
 
 ::: {style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;"}

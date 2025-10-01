@@ -158,3 +158,13 @@ activity-pipe-with-pipes
 activity-save-the-cleaned-data
 activity-create-a-boxplot-in-ggplot
 activity-more-data-viz-more-better---creating-a-histogram-in-ggplot
+fig:unnamed-chunk-9
+sec-import-data
+activity---defining-our-hypotheses
+activity---loading-in-the-data
+fig:unnamed-chunk-11
+fig:unnamed-chunk-12
+sec-data-view
+density-plots-are-useful-and-pretty
+activity---get-back-on-the-pipes
+activity---start-plotting
