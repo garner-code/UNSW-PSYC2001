@@ -57,6 +57,8 @@ social_media_likes %>%
   # with on the canvas
   geom_density() # use the data to draw a density plot 
 
+# bonus activity - can you use the export button in the plots pane to save the figure to 
+# the Output folder?
 
 ###############################################################################
 ## Get descriptive statistics
