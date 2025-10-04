@@ -285,7 +285,7 @@ Now, very importantly, lets check that this worked by using the `summary()` func
 Re-use the summary() function in your code below the relevant comment. The one that
 says:
 
-```{r, eval=FALSE}}
+```{r, eval=FALSE}
 
 ## Now run the summary() function again
 
