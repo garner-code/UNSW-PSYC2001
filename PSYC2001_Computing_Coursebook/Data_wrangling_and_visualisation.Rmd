@@ -105,11 +105,13 @@ social_media <- read.csv(file = here("Data","PSYC2001_social-media-data.csv")) #
 
 Note that this code works because 'Data' is a folder in the same directory as the `.Rproj` file. If the folder Data was somewhere else, then using `here()` would not work. We would need to instead specify the full path to the file. If you are still unsure what we mean by 'file path' then please google it, google it now.
 
+**Now that we have read in our data, we have saved our data to an object called `social_media`.** You can see this in the Environment tab in the top right section of your screen. Importantly, this particular object is a **dataframe**. A dataframe is a special type of object in R that is used to store data tables. It is similar to an Excel spreadsheet, or a data frame in Python's pandas library. Dataframes are very useful for data analysis because they allow us to easily manipulate and analyze data.
+
 ::: {style="border-left: 4px solid #FF9800; background-color: #FFF3E0; padding: 10px; margin: 10px 0;"}
 <strong>Warning:</strong> If you have an error, that's all part of coding! But do make sure you ask your tutor for help :)
 :::
 
-## Having a look at our imported data
+## Having a look at our data
 
 Our data should now be **imported into R!**
 
@@ -281,9 +283,9 @@ social_media_NA <- social_media %>%
 Now, very importantly, lets check that this worked by using the `summary()` function again.
 
 Re-use the summary() function in your code below the relevant comment. The one that
-say:
+says:
 
-```{r}
+```{r, eval=FALSE}}
 
 ## Now run the summary() function again
 
@@ -320,7 +322,7 @@ To make the basic canvas `ggplot()` requires two things:
 
 Importantly, `ggplot()` only provides the canvas. It does not draw anything by itself. You have to add layers to the canvas created by `ggplot()` by using other functions that can create bars, points or lines ! 
 
-### Activity: Create a boxplot in `ggplot()`
+### Activity: Create a boxplot in `ggplot()` {#sec-make-bp}
 
 First, let's test what happens when we use `ggplot()` by itself. Complete the code
 in your script so that it matches the code block below and run it.

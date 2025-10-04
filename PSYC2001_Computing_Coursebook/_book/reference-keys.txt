@@ -168,3 +168,12 @@ sec-data-view
 density-plots-are-useful-and-pretty
 activity---get-back-on-the-pipes
 activity---start-plotting
+visualising-is-important
+having-a-look-at-our-data
+sec-make-bp
+activity---so-youve-visualised-your-data-now-what
+activity---get-descriptive
+sec-get-help
+testing-hypothesis-using-a-paired-sample-t-test
+bonus-activity---one-sample-t-tests
+activity---conducting-a-paired-t-test

@@ -109,7 +109,7 @@ knitr::include_graphics("images/Introduction_to_R/result_ann.png")
 
 * Remember to save your script regularly by clicking the save icon (or using `Ctrl + S` or `Cmd + S` on a Mac). Save it, save it now!
 
-## Functions and arguments
+## Functions and arguments {#sec-get-help}
 
 **Functions** in R allow you to perform tasks that would take a long time to write out by hand, by only using one word! Think of them as nifty tools that will save you lots of typing, again and again. A function normally takes a number of **arguments**. You can look up all the arguments that a function takes by using the help documentation. You get help by using the format `?function`. 
 
