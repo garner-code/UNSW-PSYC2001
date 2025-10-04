@@ -390,7 +390,7 @@ There, that's much better!
 <strong>Question:</strong> What approximately is the median value? The lower quartile? The upper quartile? Is there another way that we could get this information in a more exact form ? Discuss this with your deskmate and your tutor.
 :::
 
-### Activity: More data-viz, more better - Creating a histogram in `ggplot()`
+### Activity: More data-viz, more better - Creating a histogram in `ggplot()` {#sec-make-histogram}
 
 `ggplot()` can be customised with so many other functions that we have shown here to make truly [beautiful looking plots](https://r-graph-gallery.com/ggplot2-package.html). We will be learning how to do this throughout the next few weeks. 
 

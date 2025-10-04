@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Testing between groups | UNSW PSYC2001 Computing Tutorials</title>
+  <meta name="description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Testing between groups | UNSW PSYC2001 Computing Tutorials" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Testing between groups | UNSW PSYC2001 Computing Tutorials" />
+  
+  <meta name="twitter:description" content="This book contains the complete guide for computing tutorials for PSYC2001 at UNSW." />
+  
+
+<meta name="author" content="Bart Cooley, Peter Lovibond, Kelly Garner" />
+
+
+<meta name="date" content="2025-10-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sec-testing-first-hypothesis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">UNSW PSYC2001 Computing Tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-purpose-of-this-coursebook"><i class="fa fa-check"></i><b>1.1</b> The purpose of this coursebook</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure-of-the-coursebook"><i class="fa fa-check"></i><b>1.2</b> Structure of the Coursebook</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#to-do"><i class="fa fa-check"></i><b>1.3</b> To-do</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> R and R Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting started</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>2.3</b> Getting to know R Studio</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-the-console"><i class="fa fa-check"></i><b>2.3.1</b> Activity - using the console</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#scripts"><i class="fa fa-check"></i><b>2.4</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---getting-to-know-scripts"><i class="fa fa-check"></i><b>2.4.1</b> Activity - Getting to know scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sec-get-help"><i class="fa fa-check"></i><b>2.5</b> Functions and arguments</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity---using-a-function"><i class="fa fa-check"></i><b>2.5.1</b> Activity - using a function</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#argument-names"><i class="fa fa-check"></i><b>2.5.2</b> Argument names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#base-r-and-packages"><i class="fa fa-check"></i><b>2.6</b> Base R and packages</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>2.7</b> Installing and loading packages</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-install-the-tidyverse"><i class="fa fa-check"></i><b>2.7.1</b> Activity: Install the tidyverse</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-load-the-tidyverse"><i class="fa fa-check"></i><b>2.7.2</b> Activity: Load the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#objects"><i class="fa fa-check"></i><b>2.8</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#activity-create-some-objects"><i class="fa fa-check"></i><b>2.8.1</b> Activity: Create some objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-r.html"><a href="introduction-to-r.html#datatypes"><i class="fa fa-check"></i><b>2.9</b> Datatypes</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-to-r.html"><a href="introduction-to-r.html#looking-after-the-environment"><i class="fa fa-check"></i><b>2.10</b> Looking after the environment</a></li>
+<li class="chapter" data-level="2.11" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-power-of-scripts"><i class="fa fa-check"></i><b>2.11</b> The power of scripts</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#final-activity-run-the-script"><i class="fa fa-check"></i><b>2.11.1</b> Final Activity: Run the script</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="introduction-to-r.html"><a href="introduction-to-r.html#you-are-free"><i class="fa fa-check"></i><b>2.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data wrangling and visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-installation-and-loading-packages"><i class="fa fa-check"></i><b>3.1</b> Checking installation and loading packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-load-your-packages"><i class="fa fa-check"></i><b>3.1.1</b> Activity: Load your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-packages-do"><i class="fa fa-check"></i><b>3.2</b> What do packages do?</a></li>
+<li class="chapter" data-level="3.3" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#what-do-these-packages-do"><i class="fa fa-check"></i><b>3.3</b> What do these packages do?</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-out-about-packages"><i class="fa fa-check"></i><b>3.3.1</b> Activity: find out about packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#organisation-and-csv-files"><i class="fa fa-check"></i><b>3.4</b> Organisation and CSV files</a></li>
+<li class="chapter" data-level="3.5" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#importing-your-data-in-r"><i class="fa fa-check"></i><b>3.5</b> Importing your Data in R</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-import-data"><i class="fa fa-check"></i><b>3.5.1</b> Activity: Import the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#having-a-look-at-our-data"><i class="fa fa-check"></i><b>3.6</b> Having a look at our data</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-data-view"><i class="fa fa-check"></i><b>3.6.1</b> Activity: View the data. Always, always, view the data.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#checking-the-quality-of-our-data"><i class="fa fa-check"></i><b>3.7</b> Checking the quality of our data</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-summarise-the-data"><i class="fa fa-check"></i><b>3.7.1</b> Activity: Summarise the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#cleaning-the-data"><i class="fa fa-check"></i><b>3.8</b> Cleaning the data</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-find-and-replace--999-values"><i class="fa fa-check"></i><b>3.8.1</b> Activity: Find and replace <code>-999</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#introducing-piping"><i class="fa fa-check"></i><b>3.9</b> Introducing Piping</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-pipe-with-pipes"><i class="fa fa-check"></i><b>3.9.1</b> Activity: Pipe with pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#exporting-data"><i class="fa fa-check"></i><b>3.10</b> Exporting Data</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-save-the-cleaned-data"><i class="fa fa-check"></i><b>3.10.1</b> Activity: Save the cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#data-visualization-using-ggplot2"><i class="fa fa-check"></i><b>3.11</b> Data visualization using <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#sec-make-bp"><i class="fa fa-check"></i><b>3.11.1</b> Activity: Create a boxplot in <code>ggplot()</code></a></li>
+<li class="chapter" data-level="3.11.2" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#activity-more-data-viz-more-better---creating-a-histogram-in-ggplot"><i class="fa fa-check"></i><b>3.11.2</b> Activity: More data-viz, more better - Creating a histogram in <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="data-wrangling-and-visualisation.html"><a href="data-wrangling-and-visualisation.html#you-are-free-1"><i class="fa fa-check"></i><b>3.12</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html"><i class="fa fa-check"></i><b>4</b> Testing our first hypothesis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#checking-installation-and-loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#developing-our-hypotheses"><i class="fa fa-check"></i><b>4.2</b> Developing our hypotheses</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---defining-our-hypotheses"><i class="fa fa-check"></i><b>4.2.1</b> Activity - Defining our hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-our-data"><i class="fa fa-check"></i><b>4.3</b> Visualising our data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---loading-in-the-data"><i class="fa fa-check"></i><b>4.3.1</b> Activity - Loading in the data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#visualising-is-important"><i class="fa fa-check"></i><b>4.4</b> Visualising is important</a></li>
+<li class="chapter" data-level="4.5" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#density-plots-are-useful-and-pretty"><i class="fa fa-check"></i><b>4.5</b> Density plots are useful (and pretty)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes"><i class="fa fa-check"></i><b>4.5.1</b> Activity - Get back on the pipes!</a></li>
+<li class="chapter" data-level="4.5.2" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---start-plotting"><i class="fa fa-check"></i><b>4.5.2</b> Activity - start plotting</a></li>
+<li class="chapter" data-level="4.5.3" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---so-youve-visualised-your-data-now-what"><i class="fa fa-check"></i><b>4.5.3</b> Activity - So you’ve visualised your data, now what?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#descriptive-statistics"><i class="fa fa-check"></i><b>4.6</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---get-descriptive"><i class="fa fa-check"></i><b>4.6.1</b> Activity - get descriptive!</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypotheses-manually"><i class="fa fa-check"></i><b>4.7</b> Testing hypotheses manually</a></li>
+<li class="chapter" data-level="4.8" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#testing-hypothesis-using-a-paired-sample-t-test"><i class="fa fa-check"></i><b>4.8</b> Testing hypothesis using a paired-sample t-test</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#activity---conducting-a-paired-t-test"><i class="fa fa-check"></i><b>4.8.1</b> Activity - Conducting a paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#bonus-activity---one-sample-t-tests"><i class="fa fa-check"></i><b>4.9</b> Bonus Activity - One-sample t-tests</a></li>
+<li class="chapter" data-level="4.10" data-path="sec-testing-first-hypothesis.html"><a href="sec-testing-first-hypothesis.html#you-are-free-2"><i class="fa fa-check"></i><b>4.10</b> You are Free!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="testing-between-groups.html"><a href="testing-between-groups.html"><i class="fa fa-check"></i><b>5</b> Testing between groups</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="testing-between-groups.html"><a href="testing-between-groups.html#checking-installation-and-loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Checking installation and loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="testing-between-groups.html"><a href="testing-between-groups.html#testing-between-groups-1"><i class="fa fa-check"></i><b>5.2</b> Testing between groups</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity---formulate-your-research-question"><i class="fa fa-check"></i><b>5.2.1</b> Activity - Formulate your research question</a></li>
+<li class="chapter" data-level="5.2.2" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity2---load-in-data-and-check-it"><i class="fa fa-check"></i><b>5.2.2</b> Activity2 - Load in data and check it</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="testing-between-groups.html"><a href="testing-between-groups.html#wrangling-our-data"><i class="fa fa-check"></i><b>5.3</b> Wrangling our data</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity---creating-a-new-variable"><i class="fa fa-check"></i><b>5.3.1</b> Activity - Creating a new variable</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-3---visualising-our-data-before-analysis"><i class="fa fa-check"></i><b>5.4</b> Activity 3 - Visualising our data before analysis</a></li>
+<li class="chapter" data-level="5.5" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-4---visualising-group-differences"><i class="fa fa-check"></i><b>5.5</b> Activity 4 - Visualising group differences</a></li>
+<li class="chapter" data-level="5.6" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-5---descriptive-statistics"><i class="fa fa-check"></i><b>5.6</b> Activity 5 - Descriptive statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="testing-between-groups.html"><a href="testing-between-groups.html#independent-samples-t-test"><i class="fa fa-check"></i><b>5.7</b> Independent samples t-test</a></li>
+<li class="chapter" data-level="5.8" data-path="testing-between-groups.html"><a href="testing-between-groups.html#activity-6---undertaking-an-independent-samples-t-test"><i class="fa fa-check"></i><b>5.8</b> Activity 6 - Undertaking an independent samples t-test</a></li>
+<li class="chapter" data-level="5.9" data-path="testing-between-groups.html"><a href="testing-between-groups.html#writing-up-results-and-conclusions"><i class="fa fa-check"></i><b>5.9</b> Writing up results and conclusions</a></li>
+<li class="chapter" data-level="5.10" data-path="testing-between-groups.html"><a href="testing-between-groups.html#you-are-free-3"><i class="fa fa-check"></i><b>5.10</b> You are Free!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">UNSW PSYC2001 Computing Tutorials</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testing-between-groups" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Testing between groups<a href="testing-between-groups.html#testing-between-groups" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This week we will be learning how to conduct an independent samples t-test. This is a statistical test that allows us to compare the means of two independent groups on a continuous outcome variable. According to the 90/10 theorem, we will spend 90% of our time wrangling and visualising our data, and 10% of our time actually conducting the t-test.</p>
+<div id="checking-installation-and-loading-packages-2" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Checking installation and loading packages<a href="testing-between-groups.html#checking-installation-and-loading-packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As usual we first always check and load in our required packages.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="testing-between-groups.html#cb1-1" tabindex="-1"></a><span class="co"># Check if packages are installed, if not install.</span></span>
+<span id="cb1-2"><a href="testing-between-groups.html#cb1-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(here)) <span class="fu">install.packages</span>(<span class="st">&#39;here&#39;</span>) <span class="co">#checks if a package is installed and installs it if required.</span></span>
+<span id="cb1-3"><a href="testing-between-groups.html#cb1-3" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
+<span id="cb1-4"><a href="testing-between-groups.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="testing-between-groups.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#loads in the specified package</span></span>
+<span id="cb1-6"><a href="testing-between-groups.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="testing-between-groups-1" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Testing between groups<a href="testing-between-groups.html#testing-between-groups-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Chapter <a href="sec-testing-first-hypothesis.html#sec-testing-first-hypothesis">4</a>, we performed an analysis to learn how mood impacts active social media behaviour. However, that is not the only factor that influences social media use. For example, <a href="https://academic.oup.com/pnasnexus/article/2/11/pgad357/7442564">Sapienza et al (2023)</a> found that people in rural areas are more likely to use their smartphone for social media and gaming, whereas urban dwellers are more likely to use their phone for navigation and business.</p>
+<p>However, we do not know if people living in urban and rural areas engage with social media differently, regardless of how long they spend on their chosen platforms. Today we will address this question using the <code>urban</code>, <code>good_mood_likes</code>, <code>bad_mood_likes</code>, and <code>followers</code> variables. Remember, these variables stand for the following:</p>
+<ul>
+<li><code>urban</code> – urban (1) or rural (2) area (based on postcode density)</li>
+<li><code>good_mood_likes</code> – average number of likes made over 10 min during a good mood (from platform + diary)</li>
+<li><code>bad_mood_likes</code> – as above, but during bad mood</li>
+<li><code>followers</code> – average number of followers across platforms</li>
+</ul>
+<div id="activity---formulate-your-research-question" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Activity - Formulate your research question<a href="testing-between-groups.html#activity---formulate-your-research-question" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What do you think? Will urban and rural dwellers engage differently with social media? Will there be a difference in the number of likes made by people living in urban vs rural areas? Or in the number of followers people have in urban vs rural areas?</p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What are the null hypotheses for your research questions (you should have one for ‘likes’ and one for ‘followers’? Now, what predictions would you make about differences?</p>
+</div>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Extra info:</strong> We are going to average over the effect of mood, so we do not need to include mood in our predictions about likes.</p>
+</div>
+</div>
+<div id="activity2---load-in-data-and-check-it" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Activity2 - Load in data and check it<a href="testing-between-groups.html#activity2---load-in-data-and-check-it" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Today we will be averaging across mood to get the number of likes for urban and rural dwellers. This means we first need to create a new variable called <code>likes</code> which is the average of the likes in a good and bad mood.</p>
+<p>We first load in our<code>PSYC2001_social-media-data-cleaned.csv</code> dataset. Copy and paste this code
+into your script and run it to load in the data.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="testing-between-groups.html#cb2-1" tabindex="-1"></a>social_media <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>,<span class="st">&quot;PSYC2001_social-media-data-cleaned.csv&quot;</span>)) <span class="co">#reads in CSV files</span></span></code></pre></div>
+<p>Lets double check its the data we think it is by using the <code>head()</code> function. See that we’ve added in an argument to say we want to see the first 10 lines of the data. Amend your code in your script to look at the number of rows your very own eyes want to see.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="testing-between-groups.html#cb3-1" tabindex="-1"></a><span class="fu">head</span>(social_media, <span class="dv">10</span>) <span class="co"># you can even say how many lines you want to see! Try changing the number, and see what happens.</span></span></code></pre></div>
+<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign polit_activism
+## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2            3.6
+## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2            2.6
+## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7            3.0
+## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3            2.6
+## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9            3.3
+## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4            3.9
+## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9            1.7            2.4            2.7
+## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6            1.6            2.2            2.6
+## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4            1.5            2.1            2.4
+## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2            2.2            3.1            3.5</code></pre>
+</div>
+</div>
+<div id="wrangling-our-data" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Wrangling our data<a href="testing-between-groups.html#wrangling-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are a couple things we need to do to get our data into shape. The first is to create our new variable <code>likes</code> which is the average of <code>good_mood_likes</code> and <code>bad_mood_likes</code>. The second is to define the urban factor correctly. More on that to come!</p>
+<div id="activity---creating-a-new-variable" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Activity - Creating a new variable<a href="testing-between-groups.html#activity---creating-a-new-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We need to create a new variable called <code>likes</code> which is the average of <code>good_mood_likes</code> and <code>bad_mood_likes</code>. To do this, we are going to use the <code>mutate()</code> function from the <code>tidyverse</code> package. You can think of mutate as a way to create a new column in your dataframe, using information from other columns.</p>
+<p>To use <code>mutate()</code> we need to use the pipe operator <code>%&gt;%</code> which we also used in Section <a href="sec-testing-first-hypothesis.html#sec-get-back-on-the-pipes">4.5.1</a>. The pipe operator takes the output of one function and uses it as the input for the next function. This is very useful when we want to do multiple things to a dataframe in a single line of code.</p>
+<p>We are going to use the pipe operator to take the <code>social_media</code> dataframe and then use <code>mutate()</code> to create our new variable <code>likes</code>. Because we want the average likes, we will add <code>good_mood_likes</code> and <code>bad_mood_likes</code> together and then divide by 2.</p>
+<p>Run the following line of code in your script to see the output.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="testing-between-groups.html#cb5-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="testing-between-groups.html#cb5-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span></code></pre></div>
+<pre><code>##     X  id  age time_on_social urban good_mood_likes bad_mood_likes followers polit_informed polit_campaign polit_activism
+## 1   1  S1 15.2           3.06     1            22.8           46.5     173.3            2.3            3.2            3.6
+## 2   2  S2 16.0           2.18     1            46.0           48.3     144.3            1.6            2.2            2.6
+## 3   3  S3 16.8           1.92     1            50.8           46.1      76.5            1.9            2.7            3.0
+## 4   4  S4 15.6           2.61     1            29.9           29.2     171.7            1.6            2.3            2.6
+## 5   5  S5 17.1           3.24     1            37.1           52.4     109.5            2.0            2.9            3.3
+## 6   6  S6 15.7           2.44     1            26.9           20.2     157.5            2.4            3.4            3.9
+## 7   7  S7 19.7           1.46     1            14.8           35.1     166.9            1.7            2.4            2.7
+## 8   8  S8 18.6           1.52     1            26.0           35.8     109.6            1.6            2.2            2.6
+## 9   9  S9 19.6           1.92     1             6.5           12.2     253.4            1.5            2.1            2.4
+## 10 10 S10 15.5           2.10     1            45.7           32.8      77.2            2.2            3.1            3.5
+##    likes
+## 1  34.65
+## 2  47.15
+## 3  48.45
+## 4  29.55
+## 5  44.75
+## 6  23.55
+## 7  24.95
+## 8  30.90
+## 9   9.35
+## 10 39.25</code></pre>
+<p>You can see that <code>mutate()</code> has created an extra column called likes. You can manually check that the first couple of values are correct, by manually adding the <code>good_mood_likes</code> and <code>bad_mood_likes</code> values together and dividing by 2.</p>
+<div style="border-left: 4px solid #8273e6; background-color: #c2baf5; padding: 10px; margin: 10px 0;">
+<p><strong>Tip:</strong> Manually checking that a function has done what you think it should is a good habit to get into. It will help you catch mistakes early on.</p>
+</div>
+<p>Looking at the dataframe above, we can see that the first value for <code>good_mood_likes</code> is 22.8 and the first value for <code>bad_mood_likes</code> is 46.5. Lets add them together and divide by 2, to check the answer is the same as the first value for <code>likes</code>, which is 34.65.</p>
+<p>Type the below into your console and check you get the same answer:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="testing-between-groups.html#cb7-1" tabindex="-1"></a>(<span class="fl">22.8</span> <span class="sc">+</span> <span class="fl">46.5</span>) <span class="sc">/</span> <span class="dv">2</span> </span></code></pre></div>
+<pre><code>## [1] 34.65</code></pre>
+<p>Woohoo!</p>
+<p>Now, this dataframe has all we need for our analysis, and a lot more! Let’s make things simpler for ourselves by only keeping the variables we need. We can do this by once again using the pipe operator, along with the <code>select()</code> function.</p>
+<p>Update the code in your script so that it looks like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="testing-between-groups.html#cb9-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="testing-between-groups.html#cb9-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">likes =</span>(bad_mood_likes <span class="sc">+</span> good_mood_likes)<span class="sc">/</span><span class="dv">2</span> ) <span class="sc">%&gt;%</span> <span class="co"># creates a new variable called likes which is the average of bad_mood_likes and good_mood_likes</span></span>
+<span id="cb9-3"><a href="testing-between-groups.html#cb9-3" tabindex="-1"></a>  <span class="fu">select</span>(id, urban, likes, followers) <span class="co">#selects only the specified columns from the dataframe</span></span></code></pre></div>
+<p>Check that you got what you want by using the <code>head()</code> function again.</p>
+<p>Now that we have this object it is important to check the format of the columns is what we need them to be. Lets use the <code>str()</code> function that we learned about in Section <a href="data-wrangling-and-visualisation.html#sec-data-view">3.6.1</a> to do this. Complete the code in your script and run it, to make sure you get the same results.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="testing-between-groups.html#cb10-1" tabindex="-1"></a><span class="fu">str</span>(social_media_likes) <span class="co">#provides a summary of the data structure.</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
+##  $ id       : chr  &quot;S1&quot; &quot;S2&quot; &quot;S3&quot; &quot;S4&quot; ...
+##  $ urban    : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ likes    : num  34.6 47.1 48.5 29.5 44.8 ...
+##  $ followers: num  173.3 144.3 76.5 171.7 109.5 ...</code></pre>
+<p>What have we learned?
+First we can see that having the values in <code>urban</code> are coded as either 1 (urban) or 2 (rural). Lets change this so that instead of using numbers we use the actual descriptions of urban and rural. It is surprisingly difficult to remember what 1 and 2 stand for once you come to look at your graphs. Life will be much easier if we can see what 1 and 2 stand for instead. To do this we will use the <code>mutate()</code> function with the <code>case_when()</code> function which replaces (or creates) specific values in a variable with new ones.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="testing-between-groups.html#cb12-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="testing-between-groups.html#cb12-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">urban =</span> <span class="fu">case_when</span>(urban <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;urban&quot;</span>, </span>
+<span id="cb12-3"><a href="testing-between-groups.html#cb12-3" tabindex="-1"></a>                           urban <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;rural&quot;</span>)) <span class="co">#case_when uses if_else logic to replace values with specified values if the cases match.</span></span>
+<span id="cb12-4"><a href="testing-between-groups.html#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="testing-between-groups.html#cb12-5" tabindex="-1"></a><span class="fu">str</span>(social_media_likes)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
+##  $ id       : chr  &quot;S1&quot; &quot;S2&quot; &quot;S3&quot; &quot;S4&quot; ...
+##  $ urban    : chr  &quot;urban&quot; &quot;urban&quot; &quot;urban&quot; &quot;urban&quot; ...
+##  $ likes    : num  34.6 47.1 48.5 29.5 44.8 ...
+##  $ followers: num  173.3 144.3 76.5 171.7 109.5 ...</code></pre>
+<p>We can see that <code>urban</code> is now classed as a <code>chr</code> (character) but we will eventually need to split our graphs by <code>urban</code>. This means that <code>urban</code> should be a factor instead. (Also, urban is a factor in the experiment, so lets keep it consistent). Luckily, we can change this easily by using <code>as.factor()</code> within the <code>mutate()</code> function. The <code>as.factor()</code> function is used to convert other datatypes to factors !</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="testing-between-groups.html#cb14-1" tabindex="-1"></a>social_media_likes <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="testing-between-groups.html#cb14-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">urban =</span> <span class="fu">as.factor</span>(urban))</span>
+<span id="cb14-3"><a href="testing-between-groups.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="testing-between-groups.html#cb14-4" tabindex="-1"></a><span class="fu">str</span>(social_media_likes)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
+##  $ id       : chr  &quot;S1&quot; &quot;S2&quot; &quot;S3&quot; &quot;S4&quot; ...
+##  $ urban    : Factor w/ 2 levels &quot;rural&quot;,&quot;urban&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ likes    : num  34.6 47.1 48.5 29.5 44.8 ...
+##  $ followers: num  173.3 144.3 76.5 171.7 109.5 ...</code></pre>
+<p>The data is now in a format that we should be able to easily visualise it and conduct our statistical tests. Well done !</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Testing_between_groups/What%20it%20feels%20like%20to%20explain%20this%20section.gif?raw=true" alt="What it feels like teaching this section" width="50%" />
+<p class="caption">
+Figure 5.1: What it feels like teaching this section
+</p>
+</div>
+</div>
+</div>
+<div id="activity-3---visualising-our-data-before-analysis" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Activity 3 - Visualising our data before analysis<a href="testing-between-groups.html#activity-3---visualising-our-data-before-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’re now going to look at the data in 2 ways. First, we’re going to look at how the data is distributed across all participants, so that we can check if the data meets our assumptions about normality. Second, we are going to plot our dependent variables (<code>likes</code>, <code>followers</code>) by group, to gain a visual understanding for what group differences might look like, if they exist.</p>
+<p>Here, we create a density plot for <code>likes</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="testing-between-groups.html#cb16-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="testing-between-groups.html#cb16-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="testing-between-groups.html#cb16-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> <span class="co">#the argument linewidth is used to alter the size of the density line. </span></span>
+<span id="cb16-4"><a href="testing-between-groups.html#cb16-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of Likes&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="testing-between-groups.html#cb16-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Density%20plot%20of%20likes-1.png" width="672" /></p>
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+<p><strong>Info:</strong> We use a new argument here <code>linewidth</code> to control the size of the density line.</p>
+</div>
+<p>Now, can you make a density plot for <code>followers</code>? Go on, you are a coder and you are strong.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="testing-between-groups.html#cb17-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="testing-between-groups.html#cb17-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> followers)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="testing-between-groups.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="testing-between-groups.html#cb17-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of followers&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="testing-between-groups.html#cb17-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Density%20plot%20of%20followers-1.png" width="672" /></p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Do <code>likes</code> and <code>followers</code> look normally distributed to you? Why might the data be shaped how they are for each variable?</p>
+</div>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What impact does your new understanding of the data have on your analysis, if any?</p>
+</div>
+</div>
+<div id="activity-4---visualising-group-differences" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Activity 4 - Visualising group differences<a href="testing-between-groups.html#activity-4---visualising-group-differences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we are going to make some density plots and boxplots, split by the urban factor so that we can see the group differences.</p>
+<p>Are you able to help with this?</p>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Hint:</strong> Use the <code>colour</code> argument in <code>aes()</code> to split the plot by <code>Urban</code></p>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="testing-between-groups.html#cb18-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="testing-between-groups.html#cb18-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> likes, <span class="at">colour =</span> urban)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="testing-between-groups.html#cb18-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="testing-between-groups.html#cb18-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of Likes&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="testing-between-groups.html#cb18-5" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;green&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define colours of specific parts of a graph</span></span>
+<span id="cb18-6"><a href="testing-between-groups.html#cb18-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Density%20plot%20likes%20split%20by%20urban-1.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="testing-between-groups.html#cb19-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="testing-between-groups.html#cb19-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> followers, <span class="at">colour =</span> urban)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="testing-between-groups.html#cb19-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="testing-between-groups.html#cb19-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Number of Followers&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="testing-between-groups.html#cb19-5" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;green&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define colours of specific parts of a graph</span></span>
+<span id="cb19-6"><a href="testing-between-groups.html#cb19-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Density%20plot%20followers%20split%20by%20urban-1.png" width="672" /></p>
+<div style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;">
+<p><strong>Info:</strong> We are using a new function here called <code>scale_colour_manual()</code>. This allows you manually define the colours of specific parts of a graph. Here we have used it to define colours for specific groups.</p>
+</div>
+<p>This is not the only way we may want to view the group differences in likes and followers. Using a grouped boxplot can be a handy way at looking at how groups differ from each other.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="testing-between-groups.html#cb20-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="testing-between-groups.html#cb20-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> likes, <span class="at">colour =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="testing-between-groups.html#cb20-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="testing-between-groups.html#cb20-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot; &quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Likes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="testing-between-groups.html#cb20-5" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;green&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define colours of specific parts of a graph</span></span>
+<span id="cb20-6"><a href="testing-between-groups.html#cb20-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Boxplot%20of%20likes%20split%20by%20urban-1.png" width="672" /></p>
+<p>Can you change the code below so that the x-axis has a label, and the y-axis label is correct?</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="testing-between-groups.html#cb21-1" tabindex="-1"></a>social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="testing-between-groups.html#cb21-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> followers, <span class="at">colour =</span> urban, <span class="at">x =</span> urban)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="testing-between-groups.html#cb21-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="testing-between-groups.html#cb21-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Likes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="testing-between-groups.html#cb21-5" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">rural =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">urban =</span> <span class="st">&quot;green&quot;</span>)) <span class="sc">+</span> <span class="co">#manually define colours of specific parts of a graph</span></span>
+<span id="cb21-6"><a href="testing-between-groups.html#cb21-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/Boxplot%20of%20followers%20split%20by%20urban-1.png" width="672" /></p>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> What do you think the data suggest about the group differences for <code>likes</code> and <code>followers</code>? Was it in-line with your predictions from activity 1? Are there any caveats or reasons to be cautious about your interpretations?</p>
+</div>
+</div>
+<div id="activity-5---descriptive-statistics" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Activity 5 - Descriptive statistics<a href="testing-between-groups.html#activity-5---descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is important to generate descriptive statistics before our t-test. Are you able to fill in the code below to generate the mean and standard deviation of likes and followers for urban and rural dwellers ?</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="testing-between-groups.html#cb22-1" tabindex="-1"></a>social_media_descriptives <span class="ot">&lt;-</span> social_media_likes <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="testing-between-groups.html#cb22-2" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="testing-between-groups.html#cb22-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-4"><a href="testing-between-groups.html#cb22-4" tabindex="-1"></a>    <span class="at">mean_followers =</span> <span class="fu">mean</span>(followers),</span>
+<span id="cb22-5"><a href="testing-between-groups.html#cb22-5" tabindex="-1"></a>    <span class="at">mean_likes =</span> <span class="fu">mean</span>(likes),</span>
+<span id="cb22-6"><a href="testing-between-groups.html#cb22-6" tabindex="-1"></a>    <span class="at">sd_follower =</span> <span class="fu">sd</span>(followers),</span>
+<span id="cb22-7"><a href="testing-between-groups.html#cb22-7" tabindex="-1"></a>    <span class="at">sd_likes =</span> <span class="fu">sd</span>(likes)</span>
+<span id="cb22-8"><a href="testing-between-groups.html#cb22-8" tabindex="-1"></a>  )</span>
+<span id="cb22-9"><a href="testing-between-groups.html#cb22-9" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="testing-between-groups.html#cb22-10" tabindex="-1"></a><span class="fu">head</span>(social_media_descriptives)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   urban mean_followers mean_likes sd_follower sd_likes
+##   &lt;fct&gt;          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+## 1 rural           106.       52.1        40.9     12.7
+## 2 urban           144.       40.8        62.0     14.5</code></pre>
+</div>
+<div id="independent-samples-t-test" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Independent samples t-test<a href="testing-between-groups.html#independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now want to learn whether we have evidence for differences between urban and rural dwellers on the ‘likes’ and ‘followers’ variables.</p>
+</div>
+<div id="activity-6---undertaking-an-independent-samples-t-test" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Activity 6 - Undertaking an independent samples t-test<a href="testing-between-groups.html#activity-6---undertaking-an-independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Can you work out how to perform an independent samples t-test for these variables ?</p>
+<div style="border-left: 4px solid #00bfa5; background-color: #e0f2f1; padding: 10px; margin: 10px 0;">
+<p><strong>Hint:</strong> Use the <code>t.test()</code> function from the tutorial last week and pay attention to the ‘paired’ argument !</p>
+</div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="testing-between-groups.html#cb24-1" tabindex="-1"></a><span class="co">#t.test(likes ~ urban, data = social_media_likes, paired = FALSE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="testing-between-groups.html#cb25-1" tabindex="-1"></a><span class="co">#t.test(followers ~ urban, data = social_media_likes, paired = FALSE)</span></span></code></pre></div>
+<div style="border-left: 4px solid #9C27B0; background-color: #F3E5F5; padding: 10px; margin: 10px 0;">
+<p><strong>Question:</strong> Discuss the output of this independent t-tests, what does it tell you about the differences between urban and rural dwellers and how they use social media ? Is it what you expected when you formulated your hypotheses?</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Testing_between_groups/Exams%20are%20hard.jpg?raw=true" alt="Exams are hard" width="50%" />
+<p class="caption">
+Figure 5.2: Exams are hard
+</p>
+</div>
+</div>
+<div id="writing-up-results-and-conclusions" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Writing up results and conclusions<a href="testing-between-groups.html#writing-up-results-and-conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lets have a go at writing up the results and conclusions for this independent samples t-test.</p>
+<div style="border-left: 4px solid #8B5E3C; background-color: #F5F5DC; padding: 10px; margin: 10px 0;">
+<p><strong>Results:</strong> An independent samples t-test indicated that the number of likes was greater for rural (M = 52.1 , SD = 12.7) compared to urban dwellers (M = 40.8 , SD = 14.5) and this difference was statistically significant (t(58) = 3.22, p = 0.002). Conversely, the number of followers was greater for urban (Mean = 143.9, SD = 62.0) than for urban dwellers (M = 105.6, SD = 40.9) which was statistically significant (t(58) = 2.82, p = 0.007).</p>
+</div>
+</div>
+<div id="you-are-free-3" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> You are Free!<a href="testing-between-groups.html#you-are-free-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Well done ! This computing tutorial is now over. Make sure to thank your tutor for another amazing class full of wonderful statistics and learning !</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="https://github.com/BsoCool/UNSW-PSYC2001/blob/main/All%20images%20for%20computing%20tutorials/Testing_between_groups/Everyone%20loves%20statistics.jpg?raw=true" alt="Everyone loves statistics ?" width="50%" />
+<p class="caption">
+Figure 5.3: Everyone loves statistics ?
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sec-testing-first-hypothesis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/Testing_between_groups.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

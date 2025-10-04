@@ -1,4 +1,4 @@
-# Testing our first hypothesis
+# Testing our first hypothesis {#sec-testing-first-hypothesis}
 
 Today we are going to ask our first question and seek an answer from the data. We will get the data into shape so that it is in the right format for visualizing and analysing. Then we will run the analysis and learn the answer to our question. Welcome. You are now a psychologist :)
 
@@ -112,7 +112,7 @@ As you can see, instead of having each subject's good and bad mood likes in sepa
 <strong>Helpful fact</strong> You may notice that the printout of the longform data has a few extra details, compared to the wideform data. The longform data is called 'A tibble' which is a special type of dataframe that comes from the `tidyverse` package. It basically means that you used the tidyverse to make a new dataframe, and the tidyverse package turned it into a tibble for you. Tibbles have a few extra features that make them easier to work with, but they are still dataframes at their core.
 :::
 
-### Activity - Get back on the pipes!
+### Activity - Get back on the pipes! {#sec-get-back-on-the-pipes}
 
 Its time to get back on the pipes! We get our data into longform by taking the following steps:  
 
@@ -220,7 +220,7 @@ ggplot(aes(x = likes, group = mood, fill = mood)) +
 ```
 
 
-### Activity - So you've visualised your data, now what?
+### Activity - So you've visualised your data, now what? {#sec-visualised-now-what}
 
 Great, we've visualised the data! So, now what? I hear you cry?
 
@@ -238,7 +238,7 @@ Tidyverse to the rescue! We can easily get this information in R by using the  `
 
 Because we want to know the `mean` and `standard deviation` of likes in each mood, we need to use the `group_by()` function to tell R to split the data by mood first. 
 
-### Activity - get descriptive!
+### Activity - get descriptive! {#sec-get-descriptive}
 
 Amend the following code in your script so that it matches what you see below. Then run it to get the mean and standard deviation of likes in each mood. 
 
@@ -281,7 +281,7 @@ knitr::include_graphics("images/Testing_our_first_hypothesis/t-test_help.png")
 
 We can see that `t.test()` takes different arguments which are important for the way it handles the data. What values you provide to these arguments is dependent on what kind of test you want to conduct. 
 
-### Activity - Conducting a paired t-test
+### Activity - Conducting a paired t-test {#sec-conducting-paired-t-test}
 
 We are going to go through the arguments we need to perform a paired sample t-test. We can see from the help info that we should input a set of data values to an argument called `x` and another set of data values to an argument called `y`. You can think of `x` and `y` as stand-in names for the two variables we want to compare, which are `good_mood_likes` and `bad_mood_likes`.
 
