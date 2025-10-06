@@ -13,13 +13,6 @@ rm(list=ls()) # it is good practice to clear your environment at the start of
 # the library() function. Make sure you run the code by highlighting and running
 # it.
 
-# Check if packages are installed, if not install.
-if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
-if(!require(tidyverse)) install.packages('tidyverse')
-
-library(here) #loads in the specified package
-library(tidyverse)
-
 ###############################################################################
 ## Step 2: Load in the data using the read_csv() function combined with here()
 

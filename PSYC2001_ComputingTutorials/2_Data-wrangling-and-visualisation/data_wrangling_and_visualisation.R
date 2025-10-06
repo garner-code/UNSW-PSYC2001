@@ -11,16 +11,8 @@ rm(list=ls()) # it is good practice to clear your environment at the start of
 # your script
 
 ###############################################################################
-## Step 1: Copy and paste the code to install packages and load packages using
-# the library() function. Make sure you run the code by highlighting and running
-# it.
+## Step 1: Copy and paste the code to install packages and load packages 
 
-# Check if packages are installed, if not install.
-if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
-if(!require(tidyverse)) install.packages('tidyverse')
-
-library(here) #loads in the specified package
-library(tidyverse)
 
 ###############################################################################
 ## Step 2: Find out more about the 'here' package.
@@ -43,8 +35,10 @@ head() #head displays the first ...
 str()
 
 ###############################################################################
-## Summarise you data using the summary() function. What do you notice about the
-# data?
+## Summarise you data using the summary() function. Complete the code
+# and run it. What do you notice about the data?
+
+summary()
 
 
 ## Complete the below code to find out how many cases of -999 there are in the 
@@ -61,7 +55,7 @@ count(social_media_filtered) #count the number of rows in the filtered dataframe
 
 
 
-## Now run the summary() function again
+## Now run the summary() function again to get a summary of your new dataframe
 
 
 ###############################################################################
