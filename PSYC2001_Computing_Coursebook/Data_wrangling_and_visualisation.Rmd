@@ -1,6 +1,6 @@
 # Data wrangling and visualisation
 
-Data analysis in Psychology and any other discipline is 90% data wrangling and 10% actual analysis. This week we will start to understand how to manipulate and visualise data in R.
+Data analysis in Psychology and any other discipline is 90% data wrangling and 10% actual analysis. This week we will start to understand how to manipulate and visualise data using R.
 
 As usual, download the zipped lab folder from the Moodle page for this week and unzip it somewhere sensible on your computer. Double click the `.Rproj` file to open RStudio, and open the`.R` script file to get started.
 
@@ -25,7 +25,7 @@ Note that in the code above, we've added a fancy `if` statement to check if the 
 
 ## What do packages do?
 
-You should be able to see that we have installed and loaded **3 different packages**. Let's first go over the basics of what a package is. In its simplest terms, a **package is a toolbox** that someone has created for us in R that **makes our life easier**. These packages build on the basic code that comes with the R programming language (what **RStudio** uses to run), called `base R`.
+You should be able to see that we have installed and loaded **2 different packages**. Let's first go over the basics of what a package is. In its simplest terms, a **package is a toolbox** that someone has created for us in R that **makes our life easier**. These packages build on the basic code that comes with the R programming language (what **RStudio** uses to run), called `base R`.
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center', fig.cap="The equivalent of loading an R package", fig.align='center'}
 knitr::include_graphics("images/Data_wrangling_and_visualisation/Opening_an_R_package.gif")
@@ -87,13 +87,13 @@ We will be using **two different functions** to achieve this. The `read.csv()` f
 
 Let's first confirm that `here()` knows our current location on this PC (called the **'Working Directory'**), by typing the following code into the **console** and hitting enter:
 
-```{r}
+```{r, eval=FALSE}
 here()
 ```
 
 This should return the file path to the folder where the `.Rproj` file is located.
 
-Because `here` can return whether the folder lives, we can use this to easily find where our file is located and read it in. Thanks, `here`!
+Because `here` can return where the folder lives (i.e. the file path), we can use this to easily find where our file is located and read it in. Thanks, `here`!
  
 You will see in your script that we've started this line of code for you. Copy and paste what is missing into your script and run it (or type it yourself, if you are seeking digital liberty).
 
@@ -103,7 +103,7 @@ social_media <- read.csv(file = here("Data","PSYC2001_social-media-data.csv")) #
 
 ```
 
-Note that this code works because 'Data' is a folder in the same directory as the `.Rproj` file. If the folder Data was somewhere else, then using `here()` would not work. We would need to instead specify the full path to the file. If you are still unsure what we mean by 'file path' then please google it, google it now.
+If you are still unsure what we mean by 'file path' then please google it, google it now.
 
 **Now that we have read in our data, we have saved our data to an object called `social_media`.** You can see this in the Environment tab in the top right section of your screen. Importantly, this particular object is a **dataframe**. A dataframe is a special type of object in R that is used to store data tables. It is similar to an Excel spreadsheet, or a data frame in Python's pandas library. Dataframes are very useful for data analysis because they allow us to easily manipulate and analyze data.
 
@@ -149,7 +149,7 @@ It is incredibly important to have a look at the data you are analysing. This wi
 knitr::include_graphics("images/Data_wrangling_and_visualisation/Directing_students_to_view_data_in_R.gif")
 ```
 
-- We can also do this **programmatically** using the code blocks below. We're taking you through some different ways of viewing data.
+- We can also do this **programmatically** using the code below. We're taking you through some different ways of viewing data.
 
 Type the below into the console and run it.
 
@@ -345,7 +345,7 @@ So let's add some layers to the canvas to make a graph. Here we use `geom_boxplo
 
 What is a boxplot, we hear you ask? A boxplot is a graph that shows the spread of data points where the lower part of the "box" represents the bottom quartile (where 25% of the data lies), the upper part of the box represents the upper quartile (where 75% of the data lies) and the middle of the box represents the median (the middle value). The "whiskers" (vertical lines) extend to the smallest and largest values not considered outliers.
 
-Complete the code in your script so that it exactly matches the below, and then run it.
+Complete the code in your script so that it exactly matches the below, and then run it. Note there is a warning that 2 non-finite values have been removed. That's just `ggplot` telling us 'hey, you got two NAs in here I had to take out. Did you know that?` 
 
 ```{r, boxplot_ugly}
 

@@ -337,7 +337,7 @@ social_media_likes %>%
 
 Now we return to another critical part of coding. Copying and pasting what you have, and changing just a few bits. 
 
-Now, can you change the code above to make a boxplot for `followers` instead of `likes`? You will need to change the y aesthetic, and the y-axis label. You can also change the colours if you want to. Copy and paste the original code in your script and make your changes. You should get something that looks like this:
+Now, can you change the code above to make a boxplot for `followers` instead of `likes`? You will need to change what you give for the `y` argument in `aes()`, and the y-axis label. You can also change the colours if you want to. Copy and paste the original code in your script and make your changes. You should get something that looks like this:
 
 ```{r, follow_bp, echo=FALSE}
 

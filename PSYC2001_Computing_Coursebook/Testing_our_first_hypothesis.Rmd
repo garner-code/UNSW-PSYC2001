@@ -194,8 +194,6 @@ social_media_likes %>%
 
 ```
 
-We do this by adding  inside `ggplot()`. The `aes()` function is where we tell `ggplot()` what variables to use for the x and y axes, as well as other aesthetic features like colour and shape.
-
 So...this is OK. But some things are left to be desired. It would be nice if good_mood_likes didn't occlude bad_mood_likes, because we want to see how both distributions look.
 
 Amend your code so that the density plots are semi-transparent. You can do this by adding an `alpha` argument inside the `geom_density()` function. You can think of `alpha` as a value that tells you how transparent something should be. Set `alpha = 0.5` to make the plots 50% transparent. Make your code match what you see below and run it to get the sweet results.
@@ -236,7 +234,7 @@ Before we can move onto conducting t-tests, the next step is to understand the d
 
 Tidyverse to the rescue! We can easily get this information in R by using the  `summarise()` function. The summarise function will take a dataframe and calculate summary statistics for it, and we get to define what summary statistics we want. The power!
 
-Because we want to know the `mean` and `standard deviation` of likes in each mood, we need to use the `group_by()` function to tell R to split the data by mood first. 
+Because we want to know the mean and standard deviation of likes in each mood, we need to use the `group_by()` function to tell R to split the data by mood first. 
 
 ### Activity - get descriptive! {#sec-get-descriptive}
 
@@ -273,7 +271,7 @@ knitr::include_graphics("images/Testing_our_first_hypothesis/Space_odyssey.gif")
 
 ## Testing hypothesis using a paired-sample t-test
 
-We can very easily calculate a t-test in R using the `t.test()` function which comes as part of `baseR`. Please first have a look at the help for this function using the `?` syntax, much as you did in Section \@ref(sec-get-help). We recommend you type your request for t.test help info directly into the console. You should now see some helpful in the Help pane.
+We can very easily calculate a t-test with R using the `t.test()` function which comes as part of `baseR`. Please first have a look at the help for this function using the `?` syntax, much as you did in Section \@ref(sec-get-help). We recommend you type your request for t.test help info directly into the console. You should now see some helpful in the Help pane.
 
 ```{r, echo=FALSE, out.width="80%", fig.align='center', fig.cap="Handy t-test help"}
 knitr::include_graphics("images/Testing_our_first_hypothesis/t-test_help.png")
@@ -306,7 +304,7 @@ t.test(x=social_media$good_mood_likes, #the x argument gets the good_mood_likes 
        y=social_media$bad_mood_likes) #the y argument gets the bad_mood_likes data
 ```
 
-Now there is one more argument that we super care about setting when performing a t test. This is the `paired` argument. The `paired` argument tells R whether the two sets of data we are comparing are from the same people (i.e. paired) or from different people (i.e. unpaired). Here, we know that the good and bad mood likes are from the same people, so we need to set `paired = TRUE`. If we were comparing likes from two different groups of people, we would set `paired = FALSE`.
+Now there is one more argument that we super care about setting when performing a t test. This is the `paired` argument. The `paired` argument tells R whether the two sets of data we are comparing are dependent (e.g. from the same people) or independent (e.g. from different people). We refer to dependent observations as "paired". Here, we know that the good and bad mood likes are from the same people, so we need to set `paired = TRUE`. If we were comparing likes from two different groups of people, we would set `paired = FALSE`.
 
 Update the code in your script so that it exactly matches the below. Run it and check the output is the same as what we have here.
 
@@ -364,7 +362,7 @@ Now that we have correctly calculated and saved our difference score we can use 
 
 ```{r onduct a one-sample t-test}
 
-t.test(x=social_media_diff$likes_diff) #the formula likes_diff~1 indicates that there is no grouping variables (i.e just compare to 0!)
+t.test(x=social_media_diff$likes_diff) # putting in only an x argument makes this a one-sample t-test
 ```
 
 

@@ -245,13 +245,11 @@ Note that in these examples, `name`,`age`, and `new_year` would always contain t
 
 As a side note, if you ever have to teach programming and statistics, don't use your age as an example because everytime you have to update your teaching materials you get a reminder of the fragility of existence and your advancing age. 
 
-Importantly, objects can be involved in calculations and can interact with each other. For example, copy and paste this code into your script and run each line. Check your answers match what you see below.
+Importantly, objects can be involved in calculations and can interact with each other. For example, copy and paste this code into your script and run it. Check your answer matches what you see below.
 
 ```{r objects-interact}
 
 age + 10
-new_year - today
-mean(data)
 
 ```
 
@@ -283,14 +281,13 @@ typeof(name)
 ```
 
 ::: {style="border-left: 4px solid #2196F3; background-color: #E7F3FE; padding: 10px; margin: 10px 0;"}
-<strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. We will learn about and use many of these different datatypes in this course.
+<strong>Info:</strong> There are 5 main datatypes: double, integer, complex, logical and character. For historic reasons, double is also called numeric. We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet!
 :::
 
-We will learn about using these datatypes (as well as some of the others) throughout this course, so don't fret if you don't understand it yet !
 
 ## Looking after the environment
 
-If you've been writing a lot of code you may find that the environment pane (or workspace) has become cluttered with many objects. This can make it difficult to figure out which object you need and therefore you run the risk of using the wrong data frame. If you're working on a new dataset, or if you've tried lots of different code before getting the final version, it is good practice to remember to clear the environment to avoid using the wrong object. You can do this in several way.
+If you've been writing a lot of code you may find that the environment pane (or workspace) has become cluttered with many objects. This can make it difficult to figure out which object you need and therefore you run the risk of using the wrong data. If you're working on a new dataset, or if you've tried lots of different code before getting the final version, it is good practice to remember to clear the environment to avoid using the wrong object. You can do this in several ways.
 
 1. To remove individual objects, you can type `rm(object_name)` in the console. Complete the code in your script to remove the object `data` that we created earlier. 
 2. To clear all objects from the environment run `rm(list = ls())` in the console.

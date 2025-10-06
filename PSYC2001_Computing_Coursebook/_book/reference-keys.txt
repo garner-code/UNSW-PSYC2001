@@ -104,3 +104,10 @@ activity---performing-an-independent-samples-t-test
 writing-up-results-and-conclusions
 bonus---visualising-group-differences
 you-are-free-3
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+fig:unnamed-chunk-4
+fig:unnamed-chunk-13
+fig:unnamed-chunk-15
+fig:unnamed-chunk-20
+fig:unnamed-chunk-6
+fig:unnamed-chunk-9
