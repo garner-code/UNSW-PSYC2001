@@ -111,3 +111,5 @@ fig:unnamed-chunk-15
 fig:unnamed-chunk-20
 fig:unnamed-chunk-6
 fig:unnamed-chunk-9
+cover-image-path-to-the-social-sharing-image-like-imagescover.jpg
+course-information
