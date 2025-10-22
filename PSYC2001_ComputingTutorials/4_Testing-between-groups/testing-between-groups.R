@@ -9,12 +9,16 @@ rm(list=ls()) # it is good practice to clear your environment at the start of
 # your script
 
 ###############################################################################
-## Step 1: Copy and paste the code to install packages and load packages using
-# the library() function. Make sure you run the code by highlighting and running
-# it.
+# Check if packages are installed, if not install.
+if(!require(here)) install.packages('here') #checks if a package is installed and installs it if required.
+if(!require(tidyverse)) install.packages('tidyverse')
+
+## Activity - load packages using `library()`
+
 
 ###############################################################################
-## Step 2: Load in the data using the read_csv() function combined with here()
+## Activity - Load in data and check it
+
 
 
 # check the data has loaded in correctly by using the head() function to view as many rows as you 
@@ -23,16 +27,25 @@ head(social_media, ??)
 
 
 ###############################################################################
-## Data wrangling
-# create the likes variable
+## Activity - Creating a new likes variable
+
+# run this to create the likes variable and see the output
 social_media %>% 
   mutate(likes =(bad_mood_likes + good_mood_likes)/2 )
 
 # amend the code above to select only id, urban, like, and followers, and save 
-# to a dataframe object called social_media_likes
+# to a data frame object called social_media_likes
 
 
-# check you kept the variables you want
+# complete this line of code to check you kept the variables you want
+# use it to see as many lines as you want to see
+head()
+
+###############################################################################
+## Activity - defining factors
+
+# complete the below line of code and run it to get info about the 
+# social_media_likes data frame
 str()
 
 # now run the below code to turn urban from an integer to a factor
@@ -40,8 +53,9 @@ social_media_likes <- social_media_likes %>%
   mutate(urban = factor(urban, levels=c('urban', 'rural'))) #changes the urban variable to a factor with levels urban and rural
 
 #############################################################################
-## Data viz
-# amend this code so that it creates a histogram of the followers variable
+## Activity - Adapting our previous code to make new histograms
+
+# change this code so that it creates a histogram of the likes variable
 social_media_NA %>%
   ggplot(aes(x = time_on_social)) + #ggplot uses aesthetic (aes()) to map axes. 
   geom_histogram(binwidth=10, col="black", fill="seagreen") + #creates a histogram
@@ -53,20 +67,21 @@ social_media_NA %>%
 
 
 ###############################################################################
-## Descriptive statistics
+## Activity - Adapt the code to get the mean and standard deviations for likes and followers
+
 social_media_descriptives <- social_media_likes %>% # save to new object called social_media_descriptives
   group_by() %>% # group the data by urban
   summarise(
     mean_followers = mean(followers), # calculate the mean number of followers for urban and rural groups separately
-    mean_likes = mean(likes),
-    sd_followers = sd(), 
-    sd_likes = sd()
+    mean_likes = mean(likes), # same for likes
+    sd_followers = sd(),  # calculate the sd of followers
+    sd_likes = sd() # calculate the sd of likes
   )
 
 social_media_descriptives # view the new dataframe object
 
 ###############################################################################
-## Perform the statistical analysis
+## Activity - Performing independent samples t-tests
 
 t.test(likes~urban, data=social_media_likes) # conducts an independent samples t-test to see if likes differ by urban/rural status
 # bonus - save the output of the t.test for later reference
@@ -74,11 +89,11 @@ likes_t <- t.test(likes~urban, data=social_media_likes)
 likes_t # view the output
 
 # now complete the code below for the followers variable
-t.test(???, data=social_media_likes) # conducts an independent samples t-test to see if followers differ by urban/rural status
+t.test(???~urban, data=social_media_likes) # conducts an independent samples t-test to see if followers differ by urban/rural status
 # save it for later, if you like!
 
 ###############################################################################
-## Bonus activity - Visualise group differences
+# Bonus Activity - Visualising group differences
 
 # here is the code for a grouped boxplot of likes by urban/rural status
 social_media_likes %>% 
